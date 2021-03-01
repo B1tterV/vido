@@ -1,0 +1,404 @@
+import { Server } from "miragejs";
+
+new Server({
+  routes() {
+    this.get("/api/cards", ()=>{
+        return JSON.stringify([
+          {
+            id: 1,
+            title: "1 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "4.2",
+            ratingGeneral: "4.5",
+            duration: "20",
+            price: "24.00",
+          },
+          {
+            id: 2,
+            title: "2 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "4.2",
+            ratingGeneral: "4.5",
+            duration: "20",
+            price: "25.00",
+          },
+          {
+            id: 3,
+            title: "3 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Trip",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "4.2",
+            ratingGeneral: "4.5",
+            duration: "90",
+            price: "100.00",
+          },
+          {
+            id: 4,
+            title: "4 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "1.2",
+            ratingGeneral: "2.5",
+            duration: "40",
+            price: "27.00",
+          },
+          {
+            id: 5,
+            title: "5 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "1.2",
+            ratingGeneral: "2.5",
+            duration: "40",
+            price: "27.00",
+          },
+          {
+            id: 6,
+            title: "6 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "1.2",
+            ratingGeneral: "2.5",
+            duration: "40",
+            price: "27.00",
+          },
+          {
+            id: 7,
+            title: "7 Adult-only sailing trip to Papagayo with lunch",
+            description:
+              "Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...",
+            type: "Outdoor Classes",
+            img: "item_picture_01.png",
+            isLiked: false,
+            ratingVidodo: "1.2",
+            ratingGeneral: "2.5",
+            duration: "40",
+            price: "27.00",
+          },
+        ]);
+    })
+
+    this.get('api/events', () => {
+      return JSON.stringify([
+        {
+          id: 0,
+          context: {
+            title: '1 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_01.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '24.00',
+              new: null
+            },
+            duration: 180,
+            languages: ['french'],
+            time: '08:00',
+            service: 'Private Tours'
+          }
+        },
+        {
+          id: 1,
+          context: {
+            title: '2 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_02.png'
+          },
+          properties: {
+            type: 'Sailing Tours',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '23.12',
+              new: '15.22'
+            },
+            duration: 20,
+            languages: ['french'],
+            time: '09:00',
+            service: 'Private Tours'
+
+          }
+        },
+        {
+          id: 2,
+          context: {
+            title: '3 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_03.png'
+          },
+          properties: {
+            type: 'Sightseeing Tours',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '21.00',
+              new: null
+            },
+            duration: 180,
+            languages: ['german'],
+            time: '08:30',
+            service: 'Private Tours'
+          }
+        },
+        {
+          id: 4,
+          context: {
+            title: '4 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_04.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '12.00',
+              new: null
+            },
+            duration: 180,
+            languages: ['english', 'german'],
+            time: '13:00',
+            service: 'Private Tours'
+          }
+        },
+        {
+          id: 5,
+          context: {
+            title: '5 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_05.png'
+          },
+          properties: {
+            type: 'Sailing Tours',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '6.00',
+              new: null
+            },
+            duration: 60,
+            languages: ['english', 'spanish', 'german'],
+            time: null,
+            service: 'Kid friendly'
+          }
+        },
+        {
+          id: 6,
+          context: {
+            title: '6 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_06.png'
+          },
+          properties: {
+            type: 'Sightseeing Tours',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '18.00',
+              new: null
+            },
+            duration: 180,
+            languages: ['english', 'spanish', 'german'],
+            time: '13:50',
+            service: 'Deals & Discounts'
+          }
+        },
+        {
+          id: 7,
+          context: {
+            title: '7 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_07.png'
+          },
+          properties: {
+            type: 'Outdoor Classes',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '28.00',
+              new: '10.12'
+            },
+            duration: 180,
+            languages: ['english', 'spanish', 'german'],
+            time: '14:50',
+            service: 'Free Cancellation'
+          }
+        },
+        {
+          id: 8,
+          context: {
+            title: '8 - Adult-only sailing trip to Papagayo with lunch',
+            description: 'Discover the delights of Lanzarote with this full day tour. Enjoy views of this unique with this full day tour ...',
+            img: 'item_picture_02.png'
+          },
+          properties: {
+            type: 'Sailing Tours',
+            rating: {
+              general: '4.2',
+              vidodo: '4.1'
+            },
+            price: {
+              base: '25.00',
+              new: '10.12'
+            },
+            duration: 60,
+            languages: ['english', 'spanish', 'german'],
+            time: '14:50',
+            service: 'Wheelchair accessible'
+          }
+        },
+      ])
+    })
+
+    this.get('/api/card/:id', (schema, request)=>{
+      const id = request.params.id
+      switch (id) {
+        case '1':
+          return JSON.stringify(
+            {
+              id: '1',
+              title: '2-Hour Surfing Experience for Beginners in Famara',
+              price: '15.89',
+              type: 'Outdoor Classes',
+              ratingVidodo: '4.5',
+              reviewsVidodo: '67',
+              ratingGeneral: '4.2',
+              reviewsGeneral: '25',
+              location: 'Puerto del Carmen',
+              photos: [
+                "photo_main.png",
+                "other 1.jpg",
+                "other 2.jpg",
+                "other 3.jpeg",
+                "other 4.jpg",
+                "other 5.jpg",
+              ],
+              shortDesc: `Spend a fantastic day exploring Lanzarote. Explore the picturesque town
+              of Yaisa on the edge of the volcano, before you have the opportunity to
+              appreciate the volcanic crater on Mount Timanfaya, or just have a cup of
+              coffee with milk (cafe con leche).`,
+              about: {
+                duration: {
+                  title: `Duration: 6h`,
+                  desc: 'Start time 11:30'
+                },
+                vouchers: {
+                  title: 'Vouchers accepted:',
+                  desc: 'Paper and mobile'
+                },
+                notSuitable: {
+                  title: 'Not suitable for:',
+                  desc: 'People in wheelchairs'
+                },
+                tourGuide: {
+                  title: 'Tour guide',
+                  desc: 'Spanish, English, French, German, Polish'
+                },
+                cancellation: {
+                  title: 'Cancellation 24 hours',
+                  desc: 'before the start of the activity with a full refund'
+                },
+                transfer: {
+                  title: 'With transfer',
+                  desc: 'Pick-up at or near your hotel in Lanzarote'
+                }
+              },
+              highlights: [
+                'Get panoramic views of Lanzarote\'s north coast as you cross La Graciosa',
+                'Admire white sand beaches and clear waters',
+                'Swimming and snorkeling in the natural marine reserve',
+              ],
+              fullDesc: `Spend a fantastic day exploring Lanzarote. Explore the picturesque
+                town of Yaisa on the edge of the volcano, before you have the
+                opportunity to appreciate the volcanic crater on Mount Timanfaya, or
+                just have a cup of coffee with milk (cafe con leche). Then head west
+                to the imposing rocky shores of Los Hervideros with a unique structure
+                formed by volcanic eruptions. Explore Lago Verde, a green lake in the
+                middle of El Golfo's black sandy beach. Admire the bay, formed from
+                tuff and lava фыв фыв фыв фыв фыв фыв фы вфы вф фвы вфы вфы вфы вфы фы
+                вфы вфы вфы в фывфы вфы вфы фы вфыв фы вфы вфы вфыв фыв фы вфы`,
+              included: [
+                'Visiting volcanoes',
+                'Entrance ticket to Jameos del Agud',
+                'Travel insurance for the duration of the tour',
+                'Guide',
+                'Bus transfers',
+              ],
+              notIncluded: [
+                'Childrens under 3 years old'
+              ],
+              importantInfo: [
+                `Sail to La Graciosa Island and enjoy the quiet beaches on a 6-hour journey. 
+                Swim, kayak and relax in the blue waters of the natural park and marine reserve. 
+                Benefit from complimentary drinks and a delicious lunch.`
+              ],
+              covidInfo: {
+                measures:[
+                  'Regular cleaning is carried out at all points of interaction with customers',
+                  'All participants are required to wear protective masks',
+                  'Regular cleaning is carried out at all points of interaction with customers',
+                  'All participants are required to wear protective masks',
+                ],
+                demands:[
+                  'Regular cleaning is carried out at all points of interaction with customers',
+                  'All participants are required to wear protective masks',
+                  'Regular cleaning is carried out at all points of interaction with customers',
+                  'All participants are required to wear protective masks',
+                ]
+              },
+              meetingPoint: 'Please contact the Lineas Romero ticket office with confirmation, <br> to collect your boarding pass 15 minutes before departure.',
+            })
+            
+        default:
+          return {}
+      }
+    })
+
+    this.post('http://api.active-test.tech/api/register', ()=> {
+      
+    })
+
+    this.post('http://api.active-test.tech/api/login', ()=> {
+      
+    })
+
+  },
+});

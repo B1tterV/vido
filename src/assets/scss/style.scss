@@ -1,0 +1,119 @@
+@import 'vars';
+@import 'vendor/reset';
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Gilroy';
+    font-weight: 500;
+    color: #1E2843;
+
+    &.no-scroll{
+        overflow: hidden;
+    }
+}
+
+p{
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+p.normal-text{
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.text-normal{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn{
+    border-radius: 12px;
+    padding: 14px 27px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.green-btn{
+    background: linear-gradient(180deg, #15D79D -46%, #00875F 119%);
+    color: #FFFFFF;
+}
+
+.btn-inactive{
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.block-inactive{
+    display: none;
+}
+
+.hide{
+    display: none;
+}
+
+.col{
+    width: 50%;
+}
+
+.title-min{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.curb-btn{
+    padding: 16px 38px;
+    border: 2px solid #FF5134;
+    box-sizing: border-box;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1E2843;
+}
+
+.link {
+    color: #FF5134;
+}
+
+.col {
+    width: 50%;
+}
+
+.radio__incomplete{
+    position: relative;
+    &:checked{
+        background: #FF5134;
+        &::after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: white;
+            z-index: 2;
+            border-radius: 100px;
+        }
+    }
+}
+
+
+@import 'blocks/reset-password-mail';
+@import 'blocks/select-travalers';
+@import 'blocks/booking-info';
+@import 'blocks/payment-data';
