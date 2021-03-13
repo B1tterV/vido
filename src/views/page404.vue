@@ -11,12 +11,15 @@
                         located on an archived web page.
                     </div>
                     <div class="search-block page404-search">
-                        <div>
+                        <div class="search-item">
                             <input-fileds
                                 search
                                 placeholder="Find something specific"
                             />
-                            <btn search>Search</btn>
+                            <btn search class="desktop-search">Search</btn>
+                            <btn search class="mobile-search">
+                                <img src="@/assets/images/svg/mobile-search.svg" alt="">
+                            </btn>
                         </div>
                     </div>
                 </div>
@@ -48,10 +51,10 @@ export default {
         InputFileds
     },
     created(){
-    axios.get('/api/cards')
-    .then(Response => {
-      this.cards = Response.data
-    })
+        axios.get('/api/cards')
+        .then(Response => {
+        this.cards = Response.data
+        })
     },
     data(){
         return{
@@ -94,29 +97,6 @@ export default {
     text-align: -webkit-center;
 }
 
-.search-input{
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 12px 16px 12px 30px;
-    background: #FFFFFF;
-    border: 1px solid #DCDFE7;
-    box-sizing: border-box;
-    border-radius: 8px;
-    &::after{
-        content: '';
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        top: 12px;
-        left: 10px;
-        background: url(../assets/images/svg/search.svg) no-repeat;
-    }
-    img{
-        margin-right: 9px;
-    }
-}
-
 .search-block{
     display: flex;
 }
@@ -127,13 +107,41 @@ export default {
     margin-bottom: 77px;
 }
 
-.search-btn{
-    padding: 10px 16px;
-    background: linear-gradient(180deg, #FF7C66 0%, #FF5134 167.86%);
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    color: #FFFFFF;
+.mobile-search{
+    display: none;
 }
+
+// Mobile version
+
+@media (max-width: 992px){
+    .error404{
+        width: 100%;
+    }
+    .search-item{
+        display: flex;
+        width: 100%;
+        .input{
+            width: 100%;
+            input{
+            width: 100% !important;
+            }
+        }
+    }
+    .desktop-search{
+        display: none;
+    }
+    .mobile-search{
+        margin-left: 8px;
+        position: relative;
+        min-width: 40px;
+        width: 40px;
+        display: block;
+        img{
+            position: absolute;
+            top: 9px;
+            right: 9px;
+        }
+    }
+}
+
 </style>

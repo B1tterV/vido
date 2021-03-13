@@ -1,5 +1,4 @@
 .tour-card {
-  box-shadow: 0px 1px 4px rgba(30, 40, 67, 0.12);
   border-radius: 8px;
   max-width: 262px;
   margin-bottom: 20px;
@@ -16,6 +15,7 @@
         border-radius: 4px;
         max-width: 50px;
         margin-left: 8px;
+        max-height: 20px;
 
         &-logo {
           align-self: center;
@@ -24,12 +24,13 @@
         }
 
         &-score {
-          padding: 2px 4px 0 4px;
+          padding: 1px 4px 0 4px;
 
           p {
             font-weight: 600;
             font-size: 12px;
             color: $text-primary;
+            line-height: normal;
           }
         }
       }
@@ -65,6 +66,7 @@
     padding: 16px 18px;
     border-radius: 8px;
     background: $white;
+    box-shadow: 0px 1px 4px rgba(30, 40, 67, 0.12);
 
     &_horizontal {
       margin-top: 0;
@@ -173,6 +175,69 @@
       &__item {
         margin-right: 20px;
       }
+    }
+  }
+}
+
+// Mobile version
+
+@media (max-width: 992px){
+  .tour-card{
+    display: block;
+    &__img{
+      height: 500px;
+    }
+    &__content{
+      margin-left: 0;
+      margin-top: -50px;
+    }
+    &__about{
+      margin-top: 8px;
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .tour-card{
+    display: block;
+    &__img{
+      height: 400px;
+    }
+    &__content{
+      margin-left: 0;
+      margin-top: -50px;
+    }
+  }
+}
+
+@media (max-width: 576px){
+  .tour-card{
+    display: block;
+    &__img{
+      height: 300px;
+    }
+    &__content{
+      margin-left: 0;
+      margin-top: -50px;
+    }
+  }
+}
+
+@media (max-width: 320px){
+  .tour-card{
+    display: block;
+    &__img{
+      height: 150px;
+    }
+    &__content{
+      margin-left: 0;
+      margin-top: -30px;
+    }
+    &__title{
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
     }
   }
 }

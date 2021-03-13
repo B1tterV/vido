@@ -27,8 +27,7 @@
                 </div>
             </a>
             <div class="text">
-                Cancel your reservation by 11:00 
-                August 20to receive a full refund.
+                Cancel before August 21th, 10АМ for a full refund.
             </div>
         </div>
     </div>
@@ -114,6 +113,68 @@ export default {
                 font-size: 12px;
                 line-height: 14px;
                 color: #0DB886;
+            }
+        }
+    }
+
+    @media (max-width: 992px){
+        .min__card{
+            margin-bottom: 16px;
+            padding: 12px;
+            border: 1px solid #D6DAE4;
+            box-sizing: border-box;
+            border-radius: 12px;
+            .min-card{
+                height: auto;
+                margin-bottom: 0;
+                &__card{
+                    .card-picture{
+                        display: none;
+                    }
+                }
+                &__content{
+                    margin-left: 0;
+                    .content{
+                        &__ticket{
+                            display: none;
+                        }
+                        &__title{
+                            width: 85%;
+                        }
+                        &__time{
+                            margin-top: 4px;
+                            margin-bottom: 9px;
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 14px;
+                        }
+                        &__people{
+                            width: 65%;
+                            font-weight: 500;
+                            font-size: 10px;
+                            line-height: 120%;
+                        }
+                        &__price{
+                            top: inherit;
+                            bottom: 4px;
+                            font-weight: 600;
+                            font-size: 18px;
+                            line-height: 21px;
+                        }
+                    }
+                }
+                &__cancelation{
+                    margin-top: 4px;
+                    .free-cancel-btn{
+                        width: 105px;
+                        padding: 4px;
+                    }
+                    .text{
+                        font-weight: 500;
+                        font-size: 10px;
+                        line-height: 120%;
+                    }
+                }
             }
         }
     }

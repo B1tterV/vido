@@ -102,6 +102,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "favorites" */ '@/views/ResetPassword')
   },
   {
+    path: '/legal-informations',
+    name: 'legal-informations',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/LegalInfo')
+  },
+  {
+    path: '/contacts',
+    name: 'contacts',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/Contacts')
+  },
+  {
     path: '*',
     name: 'page404',
     meta:{

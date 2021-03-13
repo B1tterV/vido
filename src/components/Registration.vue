@@ -69,7 +69,7 @@
             name="icon icon_lock" 
             :opacity="0.5"
           />
-          Создать аккаунт
+          Create an account
         </btn>
       </div>
 
@@ -160,6 +160,7 @@ export default {
   methods: {
     closeAuthForm () {
       this.$emit('stateAuth', false)
+      document.querySelector('body').style.cssText = ''
     },
     switchPopup () {
       this.$emit('statePopup', true)

@@ -4,7 +4,7 @@
             <div class="page-breadcrumbs">
                 Catalog > Payment method
             </div>
-            <div class="payment-page-title page-title">Платежные данные</div>
+            <div class="payment-page-title page-title">Billing details</div>
         </div>
         <div class="main__content">
             <div class="row justify-between">
@@ -81,6 +81,11 @@
                                 <span class="successful-mail" v-if="!$v.form.mobilePhone.$invalid">
                                     Required by the supplier
                                 </span>
+                            </div>
+                            <div class="mobile-form-halper">
+                                We will sent you confirmation 
+                                and contact you in case of 
+                                important notifications or changes.
                             </div>
                             <div class="traveler__details">
                                 <p class="title-min">Traveler details</p>
@@ -217,7 +222,14 @@
                             <div class="select__location">
                                 <p class="title-min">La Graciosa Day trip to Fuerteventura and Corralejo</p>
                                 <div class="text">Select where you’d like to be picked up from</div>
-                                <div class="select__location-input">Hotel The Ocean</div>
+                                <input-fileds
+                                    v-model.trim="$v.form.adress.$model"
+                                    :error="$v.form.adress.$error"
+                                    :errorMessage="'Invalid adress.'"
+                                    adress
+                                    type="text"
+                                    placeholder="Enter your adress or hotel name"
+                                />
                                 <div class="select__location-map">
                                     <!-- <img src="../assets/images/map2.png" alt=""> -->
                                     <google-map></google-map>
@@ -253,6 +265,7 @@
                             </div>
                             <div class="select__payment">
                                 <p class="title-min">Select payment method</p>
+                                <p class="subtitle-min">You will be asked to enter your payment details on the next step.</p>
                                 <p class="encryption">We use SSL encryption to keep your data secure</p>
                                 <div class="select__payment-pay">
                                     <div class="pay-input">
@@ -266,6 +279,9 @@
                                         </div>
                                         <div class="pay-card">
                                             <img src="../assets/images/svg/maestro.svg" alt="">
+                                        </div>
+                                        <div class="pay-input__selected">
+                                            You will be asked to enter your card details on the next step.
                                         </div>
                                     </div>
                                     <div class="pay-input">
@@ -300,8 +316,7 @@
                             </router-link>
                         </form>
                         <p class="general-terms">
-                            By proceeding, you confirm that you accept our 
-                            <a href="#">General Terms and Conditions.</a>
+                            By proceeding, you confirm that you accept our <a href="#">Policy and Terms</a>
                         </p>
                     </div>
                 </div>
@@ -316,6 +331,12 @@
                                     <br>
                                     and commissions
                                 </p>
+                            </div>
+                            <div class="total__items-mobile">
+                                <p>Order information</p>
+                                <div class="total__items-mobile__hide-content">
+                                    <img src="@/assets/images/svg/arrow.svg" alt="">
+                                </div>
                             </div>
                             <div class="total__items-content">
                                 <div class="min-cards">
@@ -346,6 +367,27 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-footer">
+            <p>By proceeding, you confirm that you accept our Policy and Terms</p>
+            <p class="mobile-footer__copyright">© 2020, Vidodo Guide LLP</p>
+        </div>
+        <div class="mobile-footer__checkout">
+            <div class="checkout-mobile">
+                <div class="checkout-mobile__price">
+                    <div class="checkout-mobile__price-total"><span>Total:</span> 2 items:</div>
+                    <div class="checkout-mobile__price-price">245,00 € </div>
+                </div>
+                <div class="checkout-mobile__btn">
+                    <router-link 
+                    to="/payment-details" 
+                    tag="button" 
+                    class="btn_ordering"
+                    >
+                    Checkout
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -517,6 +559,15 @@ export default {
             color: #8E93A0;
             margin-bottom: 16px;
         }
+        .select__payment{
+            .subtitle-min{
+                margin-top: 11px;
+                margin-bottom: 24px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
     }
 
     .traveler__details{
@@ -572,6 +623,7 @@ export default {
     .mail-input{
         margin-bottom: 13px;
     }
+
     .phone-input{
         margin-bottom: 32px;
     }
@@ -585,6 +637,9 @@ export default {
             font-weight: 500;
             font-size: 18px;
             line-height: 21px;
+        }
+        &-map{
+            margin-top: 24px;
         }
     }
 
@@ -616,6 +671,23 @@ export default {
                 color: #8F93A1;
             }
         }
+        &-mobile{
+            display: none;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            p{
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 22px;
+            }
+            &__hide-content{
+                padding: 6px;
+                background: #FFFFFF;
+                box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                transform: matrix(1, 0, 0, -1, 0, 0);
+            }
+        }
     }
 
     .total__items-content{
@@ -635,6 +707,7 @@ export default {
     }
 
     .page-data-gift{
+        margin-bottom: 24px;
         display: flex;
         margin-top: 32px;
         align-items: center;
@@ -657,6 +730,225 @@ export default {
                 font-size: 24px;
                 line-height: 29px;
                 color: #1E2843;
+            }
+        }
+    }
+
+    .mobile-form-halper{
+        display: none;
+    }
+
+    .mobile-footer{
+        display: none;
+        margin-bottom: 30px;
+        p{
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            text-align: center;
+        }
+        &__copyright{
+            margin-top: 16px;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 120%;
+            opacity: 0.5;
+        }
+        &__checkout{
+            display: none;
+        position: sticky;
+        bottom: 0;
+        background: white;
+        padding-top: 12px;
+        border-top: 1px solid #DBE0E9;
+        .checkout-mobile{
+            &__price{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                &-total{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: #B7BCCA;
+                    span{
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #1E2843;
+                    }
+                }
+                &-price{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                }
+                }
+                &__btn{
+                .btn_ordering {
+                        margin-bottom: 16px;
+                        border-radius: 12px;
+                        border: none;
+                        outline: none;
+                        background: $light-green-gradient;
+                        margin-top: 15px;
+                        padding: 15px;
+                        width: 100%;
+                        color: $white;
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .select__payment-pay{
+        .pay-input{
+            position: relative;
+            display: flex;
+            align-items: center;
+            input{
+                margin-right: 12px;
+            }
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+            .pay-card{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 66px;
+                height: 42px;
+                border: 1px solid #DCDEE7;
+                box-sizing: border-box;
+                border-radius: 4px;
+                &:not(:last-child){
+                    margin-right: 12px;
+                }
+            }
+            &__selected{
+                display: none;
+                position: absolute;
+                bottom: -30px;
+                left: 40px;
+            }
+        }
+    }
+
+    .submit-pay{
+        margin-top: 35px;
+        padding: 14px 24px;
+        background: linear-gradient(180deg, #15D79D -46%, #00875F 119%);
+        border-radius: 12px;
+        border: none;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21px;
+        color: white;
+    }
+
+    .general-terms{
+        margin-top: 24px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 17px;
+        color: #1E2843;
+        a{
+            border-bottom: 1px solid #1E2843;
+            color: #1E2843;
+        }
+    }
+
+    // Mobile version
+
+    @media (max-width: 1200px){
+        .page__data-main-content{
+            width: 475px;
+        }
+    }
+
+    @media (max-width: 992px){
+        .container{
+            .main__content{
+                .row{
+                    display: block;
+                }
+            }
+            .page__data-main-content{
+                width: 100%;
+                .submit-pay{
+                    display: none;
+                }
+                .general-terms{
+                    display: none;
+                }
+            }
+            .phone-input{
+                margin-bottom: 0;
+            }
+            .mobile-form-halper{
+                display: block;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 140%;
+            }
+            .page__data-second-content{
+                width: 100% !important;
+                .page-data-gift{
+                    margin-top: 0;
+                }
+                .data__security{
+                    display: none;
+                }
+            }
+            .page-data-container{
+                width: 100%;
+                margin-top: 25px;
+                .total__items{
+                    padding: 0;
+                    box-shadow: none;
+                    .total-text{
+                        display: none;
+                    }
+                    &-sum{
+                        display: none;
+                    }
+                    &-content{
+                        padding: 0;
+                        margin-top: 0;
+                    }
+                    &-mobile{
+                        display: flex;
+                        img{
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+        .select__location-map{
+            .vue-map-container{
+                width: 100% !important;
+            }
+        }
+        .hotel__adress{
+            .input{
+                width: 100%;
+                input{
+                    width: 100% !important;
+                }
+            }
+        }
+        .info__requested{
+            .warning-text{
+                display: none;
+            }
+        }
+        .mobile-footer{
+            display: block;
+            &__checkout{
+                display: block;
             }
         }
     }

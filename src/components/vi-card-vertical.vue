@@ -10,7 +10,7 @@
         />
         <div class="card__picture-heart" @click="addFavorites">
           <img
-            src="@/../public/imgs/MainPage/PopularAdventures/heart_orange.png"
+            src="@/../public/imgs/MainPage/PopularAdventures/heart_inactive.svg"
             alt=""
           />
         </div>
@@ -21,14 +21,14 @@
           <div class="card__info-rating">
             <div class="card__info-rating-vidodo">
               <img
-                src="@/../public/imgs/MainPage/PopularAdventures/rating_vidodo.png"
+                src="@/../public/imgs/MainPage/PopularAdventures/rating_vidodo.svg"
                 alt=""
               />
               {{card_data.ratingVidodo}}
             </div>
             <div class="card__info-rating-general">
               <img
-                src="@/../public/imgs/MainPage/PopularAdventures/rating_general.png"
+                src="@/../public/imgs/MainPage/PopularAdventures/rating_general.svg"
                 alt=""
               />
               {{card_data.ratingGeneral}}
@@ -86,7 +86,7 @@ export default {
   .card {
   width: 262px;
   position: relative;
-  margin-right: 28px;
+  margin-right: 31px;
   &__picture {
     cursor: pointer;
     position: absolute;
@@ -107,8 +107,6 @@ export default {
       padding: 5px 5px 0px 5px;
       border-radius: 50%;
       transition: 0.2s;
-      filter: contrast(0.18);
-      
     }
     &-heart:hover {
       filter: contrast(1);
@@ -124,7 +122,7 @@ export default {
     padding-left: 16px;
     padding-right: 16px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 4px rgba(30, 40, 67, 0.12);
     background-color: white;
   }
   &__info {
@@ -227,7 +225,7 @@ export default {
       text-align: right;
       small {
         font-size: 12px;
-        color: #b7bcca;
+        color: #565E72;
       }
     }
   }

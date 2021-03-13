@@ -10,7 +10,7 @@
           Lanzarote, Canary Islands
         </div>
       </div>
-      <div>
+      <div class="page-search">
         <input-fileds
           search
           placeholder="Find something specific"/>
@@ -19,7 +19,32 @@
     </div>
 
     <div class="page-catalog catalog">
-
+      <div class="mobile-sorting">
+        <div class="row">
+          <div class="mobile-sorting__calendar">
+            <img src="@/assets/images/svg/red-calendar.svg" alt="">
+            Date
+          </div>
+          <div class="mobile-sorting__day day-today day-active">
+            Today
+          </div>
+          <div class="mobile-sorting__day day-today">
+            Tomorrow
+          </div>
+        </div>
+        <div class="row">
+          <div class="mobile-sorting__slidebar" @click="catalogOpen">
+            <img src="@/assets/images/svg/mobile-filter.svg" alt="">
+          </div>
+          <div class="mobile-sorting__events">
+            <v-select 
+              :items="sortCard" 
+              @input="sortTours"
+            />  
+          </div>
+        </div>
+      </div>
+      
       <!-- category -->
       <div class="catalog-category category">
         <div class="category__item"
@@ -34,13 +59,19 @@
       <div class="catalog-main">
 
         <!-- catalog-sidebar -->
-        <div class="catalog-sidebar">
+        <div class="catalog-sidebar" :class="{'catalog-sidebar-active' : catalogActive}">
           <form ref="form" @submit.prevent="filtersEvents">
             <div class="catalog-sidebar__select-dates">
               <p>When are you traveling?</p>
               <input-fileds
                 datepicker
                 placeholder="Select Dates"/>
+            </div>
+            <div class="catalog-sidebar__mobile-select-dates">
+              <p>Filters (6)</p>
+              <div class="close" @click="catalogClose">
+                <img src="@/assets/images/svg/dark-close.svg" alt="">
+              </div>
             </div>
 
             <!-- <div class="catalog-sidebar__item">
@@ -85,17 +116,17 @@
 
             <div class="catalog-sidebar__item">
               <div class="catalog-sidebar__title">
-                Travel Services
+                Categories
                 <div class="catalog-sidebar__title-hide sidebar-active">
                   <img src="@/assets/images/svg/arrow.svg" alt="">
                 </div>
               </div>
               <div class="catalog-sidebar__control"
-                v-for="(el, i) in filters.service.options"
+                v-for="(el, i) in filters.travel.options"
                 :key="i"
               >
                 <checkbox 
-                  @input="filtration({ service: el.value })"
+                  @input="filtration({ travel: el.value })"
                 >
                   <template v-slot:title>
                     {{ el.name }}
@@ -184,7 +215,7 @@
         </div>
 
         <!-- catalog-events -->
-        <div class="catalog-events events">
+        <div class="catalog-events events" id="eventsCatalog">
           <div class="page-info">
             <img src="@/assets/images/svg/covid-info.svg" alt="">
             Special measures are in place to ensure health and safety in connection with COVID-19 
@@ -197,7 +228,29 @@
             <div class="events__found">
               {{ tours.length }} of {{ tours.length }} activities found 
             </div>
-          
+
+            <div class="desktop-small-sorting">
+              <div class="row">
+                <div class="mobile-sorting__calendar desktop-small-sorting__calendar">
+                  <img src="@/assets/images/svg/red-calendar.svg" alt="">
+                  Date
+                </div>
+                <div class="mobile-sorting__day desktop-small-sorting__day day-today day-active">
+                  Today
+                </div>
+                <div class="mobile-sorting__day desktop-small-sorting__day day-today">
+                  Tomorrow
+                </div>
+              </div>
+            </div>
+
+            <div class="desktop-small-filter" @click="catalogOpen">
+              <a href="#" class="desktop-small-filter__btn">
+                <img src="@/assets/images/svg/desktop-filter.svg" alt="">
+                <p>Filter</p>
+              </a>
+            </div>
+
             <div class="events__sorting">
               <span>Sorting by:</span> 
               <v-select 
@@ -249,6 +302,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'Catalog',
   data: () => ({
+    catalogActive: false,
     category: [
       'Outdoor Activities',
       'Tours & Adventure',
@@ -448,6 +502,42 @@ export default {
           })
           return array
         }
+      },
+      travel: {
+        name: 'travel',
+        options: [
+          { 
+            name: 'Transportation', 
+            value: 'Transportation'
+          },
+          { 
+            name: 'Transfer', 
+            value: 'Transfer'
+          },
+          { 
+            name: 'Rentals', 
+            value: 'Rentals'
+          },
+          { 
+            name: 'Photography', 
+            value: 'Photography'
+          },
+          { 
+            name: 'Other', 
+            value: 'Other'
+          },
+        ],
+        parameters: [],
+        filtration: ({ events, parameters }, array = []) => {
+          events.forEach(event => {
+            if (parameters.includes(event.properties.service)) {
+              if(!array.includes(event)) {
+                array.push(event)
+              }
+            }
+          })
+          return array
+        }
       }
   
     }
@@ -473,7 +563,18 @@ export default {
       }  
 
       this.$store.commit('filterEvents', this.filters[prop])
-    }
+    },
+
+    catalogOpen () {
+      this.catalogActive = true;
+      document.getElementById('eventsCatalog').style.cssText = 'display: none'
+      document.querySelector('catalog-sidebar').classList.add('atalog-sidebar-active')
+    },
+
+    catalogClose () {
+      this.catalogActive = false;
+      document.getElementById('eventsCatalog').style.cssText = 'display: block'
+    },
     
   },
   created () {

@@ -22,7 +22,7 @@
                                     <div class="booking__info-table">
                                         <div class="row">
                                             <div class="col">
-                                                <p>Status</p>
+                                                <p class="booking__info-table-title">Status</p>
                                             </div>
                                             <div class="col">
                                                 <p class="confirm">Order confirmed</p>
@@ -30,7 +30,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Booking code</p>
+                                                <p class="booking__info-table-title">Booking code</p>
                                             </div>
                                             <div class="col">
                                                 <p>VDD9834023G8CDB</p>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>PIN-code</p>
+                                                <p class="booking__info-table-title">PIN-code</p>
                                             </div>
                                             <div class="col">
                                                 <p>!FD=jsHdb</p>
@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Traveler</p>
+                                                <p class="booking__info-table-title">Traveler</p>
                                             </div>
                                             <div class="col">
                                                 <p>Angela Merkel</p>
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Members</p>
+                                                <p class="booking__info-table-title">Members</p>
                                             </div>
                                             <div class="col">
                                                 <p>1 Adult (ages 13-65)</p>
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Date</p>
+                                                <p class="booking__info-table-title">Date</p>
                                             </div>
                                             <div class="col">
                                                 <p>September 1, 2021</p>
@@ -70,7 +70,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Validity</p>
+                                                <p class="booking__info-table-title">Validity</p>
                                             </div>
                                             <div class="col">
                                                 <p>1 Day</p>
@@ -78,7 +78,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p>Price</p>
+                                                <p class="booking__info-table-title">Price</p>
                                             </div>
                                             <div class="col">
                                                 <div class="price-block">
@@ -106,7 +106,7 @@
                                 or show the mobile voucher
                             </p>
                             <div class="your__voucher-print">
-                                <img src="../assets/images/svg/printer.svg" alt="">
+                                <img src="../assets/images/svg/green-printer.svg" alt="">
                                 <p>Voucher for printing</p>
                             </div>
                         </div>
@@ -203,12 +203,17 @@
                     <OrderManagement
                     :orderText="'Cancel your reservation <br> by 11:00 am on August <br> 31st to receive a full <br> refund'" />
                     <TourOperatorDetails/>
+                    <div class="desktop-small-gift">
+                        <Gift
+                        :giftCode="giftCode" />
+                    </div>
                 </div>
             </div>
         </div>
         <div class="container">
             <vi-card-carousel
                 :carousel_title = carouselTitle
+                :carousel_subtitle = carouselSubtitle
                 :carousel_data = cards
             />
         </div>
@@ -244,6 +249,7 @@ export default {
         return{
         cards:[],
         carouselTitle: 'More Popular Tours & Activities',
+        carouselSubtitle: 'Recommended activities near Aquapark Costa Teguise',
         giftCode: '5536bx88jG'
         }
     }
@@ -311,8 +317,13 @@ export default {
                     font-weight: 600;
                 }
                 .price-block{
+                    position: relative;
                     align-items: center;
                     display: flex;
+                    a{
+                        position: absolute;
+                        right: 0;
+                    }
                 }
             }
         }
@@ -341,6 +352,7 @@ export default {
         font-size: 12px;
         line-height: 14px;
     }
+
     .your__voucher{
         margin-top: 74px;
         .title{
@@ -364,14 +376,14 @@ export default {
             display: flex;
             align-items: center;
             padding: 13px 16px;
-            background: #0DB886;
+            border: 1px solid #0DB886;
             border-radius: 8px;
             p{
                 padding-left: 7px;
                 font-weight: 600;
                 font-size: 16px;
                 line-height: 19px;
-                color: #FFFFFF;
+                color: #0DB886;
             }
         }
     }
@@ -506,6 +518,217 @@ export default {
             }
             &:not(:last-child){
                 margin-bottom: 18px;
+            }
+        }
+    }
+
+    .desktop-small-gift{
+        display: none;
+    }
+
+    // Mobile version
+
+    @media (max-width: 1200px){
+        .page__main-content{
+            width: 70%;
+            .banner{
+                img{
+                    width: 100%;
+                }
+            }
+            .gift{
+                display: none;
+            }
+        }
+        .desktop-small-gift{
+            display: block;
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 992px){
+        .page-title{
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 130%;
+        }
+        .page-breadcrumbs{
+            display: none;
+        }
+        .booking__info-page{
+            .container{
+                .row{
+                    .page__main-content{
+                        width: 100%;
+                        .banner{
+                            margin-top: 12px;
+                            img{
+                                width: 100%;
+                            }
+                        }
+                        .booking__info{
+                            &__title{
+                                font-weight: bold;
+                                font-size: 18px;
+                                line-height: 22px;
+                            }
+                            &-table{
+                                width: 100%;
+                                .show-receipt{
+                                    display: none;
+                                }
+                                &-title{
+                                    font-weight: bold;
+                                }
+                                .row{
+                                    .col:last-child{
+                                        text-align-last: right;
+                                    }
+                                    .price-block{
+                                        .price{
+                                            width: 100%;
+                                            text-align-last: right;
+                                        }
+                                    }
+                                }
+                            }
+                            &-row{
+                                display: block;
+                            }
+                            &-col{
+                                margin-top: 26px;
+                                .gift{
+                                    width: 100%;
+                                    &-title{
+                                        place-content: center;
+                                    }
+                                    &__code{
+                                        &-code{
+                                            justify-content: center;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .your__voucher{
+                            margin-top: 26px;
+                            .title-min{
+                                text-align: center;
+                            }
+                            &-content{
+                                display: block;
+                                p{
+                                    br{
+                                        display: none;
+                                    }
+                                }
+                            }
+                            &-print{
+                                margin-top: 8px;
+                                justify-content: center;
+                            }
+                        }
+                        .meeting__info{
+                            .map{
+                                &-info{
+                                    display: none;
+                                }
+                                &-buttons{
+                                    display: block;
+                                    text-align: center;
+                                    a{
+                                        font-weight: 500;
+                                        font-size: 14px;
+                                        line-height: 140%;
+                                        color: #00A1FF;
+                                        opacity: 1;
+                                    }
+                                    .print-map{
+                                        margin-top: 12px;
+                                        justify-content: center;
+                                    }
+                                }
+                            }
+                        }
+                        .meeting-halper{
+                            padding: 16px;
+                            .text{
+                                font-weight: 500;
+                                font-size: 14px;
+                                line-height: 140%;
+                                a{
+                                    font-size: 14px;
+                                }
+                            }
+                            &-subtitle{
+                                margin-top: 12px;
+                                font-weight: bold;
+                                font-size: 14px;
+                                line-height: 17px;
+                            }
+                            &-description{
+                                margin-top: 6px;
+                                font-weight: 500;
+                                font-size: 14px;
+                                line-height: 140%;
+                            }
+                        }
+                        .drop__off{
+                            .title-min{
+                                font-weight: bold;
+                            }
+                            .block-description{
+                                font-weight: 600;
+                                font-size: 12px;
+                                line-height: 14px;
+                            }
+                        }
+                        .import__info{
+                            .title-min{
+                                font-weight: bold;
+                            }
+                            &-note{
+                                width: 100%;
+                                margin-bottom: 8px;
+                                font-weight: bold;
+                                font-size: 14px;
+                                line-height: 17px;
+                                &-description{
+                                    .import__info-item{
+                                        margin-bottom: 8px;
+                                        p{
+                                            padding: 0;
+                                            font-weight: 500;
+                                            font-size: 14px;
+                                            line-height: 140%;
+                                        }
+                                    }
+                                }
+                            }
+                            &-row{
+                                display: block;
+                            }
+                        }
+                    }
+                    .page__second-content{
+                        width: 100%;
+                        .order__management{
+                            .text{
+                                br{
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .desktop-small-gift{
+            display: none;
+        }
+        .map{
+            img{
+                width: 100%;
             }
         }
     }

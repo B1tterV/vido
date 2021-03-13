@@ -14,11 +14,19 @@
                     <div class="card-subtitle">
                         Entrance ticket with transfer from Playa Blanka 
                     </div>
+                    <div class="card-subtitle-mobile">
+                        Entrance ticket <br> With transfer from Playa Blanka 
+                    </div>
                     <div class="card-time">
                         {{ data.datetime }}
                     </div>
                     <div class="card-people">
                         {{ data.people }}
+                    </div>
+                    <div class="card-del-mobile">
+                        <btn class="card-del-mobile-button">
+                            <img src="@/assets/images/svg/del-mobile.svg" alt="">
+                        </btn>
                     </div>
                 </div>
                 <div class="card-content-bottom">
@@ -58,6 +66,9 @@
                     </div>
                     <div class="card-subtitle">
                         Entrance ticket with transfer from Playa Blanka 
+                    </div>
+                    <div class="card-subtitle-mobile">
+                        Entrance ticket <br> With transfer from Playa Blanka 
                     </div>
                     <div class="card-time">
                         {{ data.datetime }}
@@ -103,12 +114,17 @@
 </template>
 
 <script>
+import Btn from "../components/controls/Btn.vue";
+
 export default {
   name: 'OrderCard',
   props: {
     data: Object,
     pastOrder: Boolean
   },
+  components: {
+      Btn
+  }
 }
 </script>
 
@@ -185,6 +201,9 @@ export default {
             font-weight: 600;
             font-size: 20px;
             line-height: 24px;
+            &-mobile{
+                display: none;
+            }
         }
         .card-time{
             margin-top: 8px;
@@ -290,5 +309,111 @@ export default {
     .card-content-price{
         bottom: 10px !important;
     }
+    
+    .card-del-mobile{
+        display: none;
+        position: absolute;
+        right: 0;
+        bottom: 68px;
+        img{
+            width: 100%;
+        }
+        &-button{
+            background: white;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #D6DAE4;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+    }
 }
+
+@media(max-width: 992px){
+    .page-breadcrumbs{
+        display: none;
+    }
+    .ordering__information{
+        margin-top: 0;
+        .card-img{
+            display: none;
+        }
+        &-card{
+            padding: 12px;
+            display: block;
+            .card-content{
+                margin-left: 0;
+            }
+            .card-content-top{
+                .card-title{
+                    margin-top: 0;
+                    line-height: 19px;
+                    font-weight: 600;
+                    font-size: 16px;
+                    width: 100%;
+                }
+                .card-subtitle{
+                    display: none;
+                    &-mobile{
+                        margin-top: 4px;
+                        display: block;
+                        font-weight: 600;
+                        font-size: 12px;
+                    }
+                }
+                .card-time{
+                    margin-top: 4px; 
+                    font-size: 12px;
+                }
+                .card-people{
+                    font-size: 10px;
+                    width: 150px;
+                }
+            }
+            .card-content-bottom{
+                .order-confirm{
+                    font-size: 12px;
+                }
+                .cancellation-possible{
+                    width: 122px;
+                    font-size: 10px;
+                    letter-spacing: -0.005em;
+                }
+                .blue-info{
+                    font-size: 12px;
+                }
+            }
+        }
+        .ticket{
+            display: none;
+        }
+        .card-buttons{
+            margin-left: 0;
+            margin-top: 13px;
+            .voucher-btn{
+                width: 100% !important;
+            }
+        }
+        .card-content-price{
+            margin: 0;
+            bottom: 0;
+        }
+    }
+    .card-content-top{
+        .card-del-mobile{
+            display: block;
+        }
+    }
+    .card-content-bottom{
+        .row{
+            display: flex !important;
+        }
+    }
+}
+
+@media(max-width: 576px){
+
+}
+
 </style>

@@ -37,6 +37,7 @@ export default {
     },
     switchPopup (state) {
       this.state = state
+      document.querySelector('body').style.cssText = 'overflow: hidden'
     }
   },
   components: {

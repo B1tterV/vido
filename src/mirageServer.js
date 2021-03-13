@@ -15,7 +15,7 @@ new Server({
             ratingVidodo: "4.2",
             ratingGeneral: "4.5",
             duration: "20",
-            price: "24.00",
+            price: "24,00",
           },
           {
             id: 2,
@@ -28,7 +28,7 @@ new Server({
             ratingVidodo: "4.2",
             ratingGeneral: "4.5",
             duration: "20",
-            price: "25.00",
+            price: "25,00",
           },
           {
             id: 3,
@@ -41,7 +41,7 @@ new Server({
             ratingVidodo: "4.2",
             ratingGeneral: "4.5",
             duration: "90",
-            price: "100.00",
+            price: "100,00",
           },
           {
             id: 4,
@@ -54,7 +54,7 @@ new Server({
             ratingVidodo: "1.2",
             ratingGeneral: "2.5",
             duration: "40",
-            price: "27.00",
+            price: "27,00",
           },
           {
             id: 5,
@@ -67,7 +67,7 @@ new Server({
             ratingVidodo: "1.2",
             ratingGeneral: "2.5",
             duration: "40",
-            price: "27.00",
+            price: "27,00",
           },
           {
             id: 6,
@@ -80,7 +80,7 @@ new Server({
             ratingVidodo: "1.2",
             ratingGeneral: "2.5",
             duration: "40",
-            price: "27.00",
+            price: "27,00",
           },
           {
             id: 7,
@@ -93,7 +93,7 @@ new Server({
             ratingVidodo: "1.2",
             ratingGeneral: "2.5",
             duration: "40",
-            price: "27.00",
+            price: "27,00",
           },
         ]);
     })

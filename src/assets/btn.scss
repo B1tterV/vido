@@ -27,18 +27,22 @@
   }
 
   &_singin {
-    width: 100px;
-    height: 35px;
+    border-radius: 8px !important;
+    width: 81px;
+    height: 33px;
+    font-weight: normal !important;
+    font-size: 14px !important;
   }
 
   &_search {
     padding: 0 !important;
     width: 84px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: 8px !important;
     background: $light-orange-gradient;
     color: $white;
-    font-size: 16px;
+    font-weight: 500 !important;
+    font-size: 16px !important;
   }
 
   &_secondary {
@@ -135,6 +139,34 @@
     font-size: 20px !important;
     line-height: 24px;
     color: #0DB886;
+  }
+
+  &_mobileSearch{
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(180deg, #FF7C66 0%, #FF5134 167.86%);
+    border-radius: 8px;
+  }
+
+  &_cookie{
+    background: linear-gradient(180deg, #FF7C66 0%, #FF5134 167.86%);
+    color: white;
+    border: none;
+  }
+
+  &_standard{
+    background: #FFFFFF;
+    border: 1px solid #D1D6E3;
+    box-sizing: border-box;
+    color: #1E2843;
+    font-weight: 500 !important;
+    font-size: 20px !important;
+  }
+
+  &_cancellation{
+    background: linear-gradient(180deg, #FF7C66 0%, #FF5134 167.86%);
+    font-weight: 500 !important;
+    font-size: 20px !important;
   }
 
 }

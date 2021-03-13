@@ -21,7 +21,7 @@
                 </div>
                 <div class="reset__password-btn ">
                     <btn class="btn green-btn" @click="submit">
-                        Send a link to reset your password
+                        Send reset link
                     </btn>
                 </div>
             </form>
@@ -161,6 +161,28 @@ export default {
 
 .block-flex{
     display: flex;
+}
+
+@media (max-width: 992px) {
+    .title{
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 130%;
+        margin-bottom: 24px;
+    }
+    .password-subtitle{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .reset_password-form{
+        .pay-input-block{
+            width: 100%;
+        }
+        .green-btn{
+            width: 100%;
+        }
+    }
 }
 
 </style>

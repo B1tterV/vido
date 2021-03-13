@@ -20,8 +20,7 @@
                 </div>
             </div>
             </div>
-            <hr v-if="isOpen" />
-            <transition name="select__inputFade">
+            <transition name="select__inputFade" >
                 <div v-if="isOpen" class="select__input__controls-language-expand">
                     <div
                         v-for="(v, k) in languages"
@@ -365,8 +364,15 @@ export default {
             right: 12px;
         }
         &-language-expand {
+            position: absolute;
             overflow: auto;
             height: 210px;
+            width: 100%;
+            background: white;
+            z-index: 10;
+            top: 54px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             &-item {
             display: flex;
             justify-content: space-between;
@@ -445,6 +451,12 @@ export default {
     cursor: text;
   label{
     display: none;
+  }
+}
+
+@media (max-width: 992px){
+  .select__input{
+    width: 100%;
   }
 }
 

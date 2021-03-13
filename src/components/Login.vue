@@ -119,6 +119,7 @@ export default {
   methods: {
     closeAuthForm () {
       this.$emit('stateAuth', false)
+      document.querySelector('body').style.cssText = ''
     },
     switchPopup () {
       this.$emit('statePopup', false)

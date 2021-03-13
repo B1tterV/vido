@@ -95,9 +95,10 @@ export default {
   &__options {
     position: absolute;
     width: 100%;
-    top: 40px;
+    top: 54px;
     left: 0;
-    border: solid 1px #aeaeae;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     margin: 0 auto;
     cursor: pointer;
     background-color: #fff;

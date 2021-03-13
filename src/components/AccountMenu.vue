@@ -17,10 +17,6 @@
                     <img src="@/assets/images/svg/profile-item.svg" alt="Profile">
                     Profile
                 </router-link>
-            <div class="account-menu__items-item">
-                <img src="@/assets/images/svg/help-item.svg" alt="Help">
-                Help
-            </div>
             <div class="account-menu__items-item" @click="logout">
                 <img src="@/assets/images/svg/logout-item.svg" alt="Logout">
                 Logout

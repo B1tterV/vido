@@ -1,7 +1,7 @@
 <template>
     <div class="gift successful__checkout-gift">
         <div class="gift-title">
-            <img src="@/assets/images/svg/gift.svg" alt="gift">
+            <img src="@/assets/images/svg/big-gift.svg" alt="gift">
             <p>Your gift</p>
         </div>
         <div class="gift__code">
@@ -15,7 +15,7 @@
             <div class="text">
                 You must enter this promotional code in the application, 
                 <br>
-                xxxxxx xxx x x xxxx xxx  x xx   xxxxxxxxxxxxxxx x x x:
+                xxxxxx xxx x x xxxx xxx  x xx
                 <div class="gift__help-step">
                     <p>Menu</p>
                     <img src="@/assets/images/svg/step-arrow.svg" alt="step">
@@ -55,6 +55,10 @@ export default {
                 font-weight: 600;
                 font-size: 24px;
                 line-height: 29px;
+            }
+            img{
+                width: 46px;
+                height: 46px;
             }
         }
         &__code{
@@ -110,7 +114,8 @@ export default {
     }
     
     .successful__checkout-gift{
-        padding: 10px 9px;
+        height: 80px;
+        padding: 10px;
         width: 848px;
         display: flex;
         align-items: center;
@@ -118,6 +123,7 @@ export default {
         background: #F4F7FB;
         border-radius: 8px;
         .gift__code{
+            padding: 6px 16px;
             margin-left: 21px;
             margin-right: 25px;
             width: 258px;

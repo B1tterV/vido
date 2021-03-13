@@ -350,12 +350,32 @@
           </transition>
         </div>
         <transition name="checkFade">
+          
           <div
             class="check__controls-date"
             :class="{ 'check__controls-date-expand': isOpen }"
             @click=" !isOpen ? expandOpen() : ''"
           >
-            <div class="check__controls-date-title">
+          <div class="check__controls-date-preview" @click="isClose = true" v-if="!isClose">
+            <div class="check__controls-date-preview-icon">
+              <img src="@/assets/images/svg/check-calendar.svg" alt="">
+            </div>
+            <div class="check__controls-date-preview-text">
+              Select date
+            </div>
+            <div class="check__controls-person-preview-btn">
+              <svg
+                width="14"
+                height="9"
+                viewBox="0 0 14 9"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M1 1L7 7L13 1" stroke="#8F93A1" stroke-width="1.5" />
+              </svg>
+            </div>
+          </div>
+            <div class="check__controls-date-title" v-if="isClose">
               <datepicker
                 ref="programaticOpen"
                 class="check__controls-date-datepicker"
@@ -372,6 +392,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import Datepicker from "vuejs-datepicker";
 export default {
@@ -381,23 +402,20 @@ export default {
   data() {
     return {
       isOpen: false,
+      isClose: false,
       adult_amount: 0,
       persons: {
-        Adult: 0,
+        Adult: 1,
         Senior: 0,
         Youth: 0,
         Child: 0,
         Infant: 0,
       },
-      preview: "",
+      preview: "1 Adult",
       languages: [
         {
-          title: "Without audio guide",
-          isActive: true,
-        },
-        {
           title: "English",
-          isActive: false,
+          isActive: true,
         },
         {
           title: "German",
@@ -460,9 +478,10 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 .check {
-  background-color: #d1f1fd;
+  background-color: #D1EBFD;
   border-radius: 8px;
   padding: 20px;
   &__title {
@@ -617,6 +636,32 @@ export default {
       height: 46px;
       background: #ffffff;
       border-radius: 12px;
+      &-preview{
+        width: 305px;
+        height: 46px;
+        display: flex;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s;
+        &-icon{
+          padding-left: 16px;
+          height: inherit;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+        &-text{
+          padding-left: 16px;
+          height: inherit;
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 21px;
+          color: #1e2843;
+        }
+      }
       &-datepicker {
         width: inherit;
         height: inherit;
@@ -703,4 +748,64 @@ export default {
   transform: translateY(10px);
   opacity: 0;
 }
+
+// Mobile version
+
+@media (max-width: 1200px){
+  .main__header{
+    .main__title{
+      font-size: 32px;
+    }
+  }
+  .check__controls{
+    &-person{
+      &-preview{
+        width: 330px;
+      }
+    }
+    &-language{
+      &-preview{
+        width: 260px;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px){
+  .check{
+    &__title{
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 17px;
+    }
+    &__controls{
+      .row{
+        display: block;
+      }
+      &-person{
+        margin-bottom: 12px;
+        &-preview{
+          width: 100%;
+        }
+      }
+      &-language{
+        margin-bottom: 12px;
+        &-preview{
+          width: 100%;
+        }
+      }
+      &-date{
+        width: 100%;
+        &-preview{
+          width: 100%;
+        }
+        .vdp-datepicker__calendar{
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 </style>

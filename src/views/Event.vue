@@ -1,6 +1,9 @@
 <template>
   <div class="event">
     <div class="container">
+      <div class="event__photo-mobile">
+        <slide :data="slide"/>
+      </div>
       <div class="row justify-between">
         <div class="main__header">
           <p class="main__breadcrumbs"> 
@@ -93,8 +96,14 @@
               :src="require(`@/../public/imgs/Event/${mainPicture}`)"
               alt=""
             />
+            <div class="event__photo-main-date">
+              Available from Nov 3
+            </div>
           </div>
           <div class="event__photo-others">
+            <div class="event__photo-others__slide-up">
+              <img src="@/assets/images/svg/white-arrow.svg" alt="">
+            </div>
             <div
               class="event__photo-others-picture"
               v-for="pic in pictures"
@@ -130,6 +139,9 @@
                   />
                 </svg>
               </div>
+            </div>
+            <div class="event__photo-others__slide-down">
+              <img src="@/assets/images/svg/white-arrow.svg" alt="">
             </div>
           </div>
         </div>
@@ -202,7 +214,7 @@
             <li 
               v-for="(item, i) in event_data.highlights"
               :key="i"
-            >{{item}}
+            ><p>{{item}}</p>
             </li>
           </ul>
         </div>
@@ -210,6 +222,12 @@
       <CheckAvailability/>
       <div class="event__fulldesc">
         <h1>Experience</h1>
+        <div class="event__fulldesc-mobile-title">
+          <p>Full description</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__fulldesc-title">Full description</div>
         <div class="event__fulldesc-text" v-if="showShort">
           {{ event_data.fullDesc | limitTo }}
@@ -237,28 +255,48 @@
       </div>
       <div class="event__included">
         <div class="event__included-title">What's included</div>
+        <div class="event__fulldesc-mobile-title">
+          <p>What's included</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__included-text">
           <ul>
             <li
               v-for="(item, i) in event_data.included"
               :key="i" 
-            >{{item}}</li>
+            ><p>{{item}}</p>
+            </li>
           </ul>
         </div>
       </div>
       <div class="event__notincluded">
         <div class="event__notincluded-title">Not suitable for</div>
+        <div class="event__fulldesc-mobile-title">
+          <p>Not suitable for</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__notincluded-text">
           <ul>
             <li
               v-for="(item, i) in event_data.notIncluded"
               :key="i"
-            >{{item}}</li>
+            ><p>{{item}}</p>
+            </li>
           </ul>
         </div>
       </div>
       <div class="event__covidInfo">
         <div class="event__covidInfo-title">COVID-19 Special information</div>
+        <div class="event__fulldesc-mobile-title">
+          <p>COVID-19 Special information</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__covidInfo-text">
           <div class="event__covidInfo-text-measures">
             Security measures are taken:
@@ -266,7 +304,8 @@
               <li
                 v-for="(item, i) in event_data.covidInfo.measures"
                 :key="i"
-              >{{item}}</li>
+              ><p>{{item}}</p>
+              </li>
             </ul>
           </div>
           <div class="event__covidInfo-text-demands">
@@ -275,24 +314,38 @@
               <li
                 v-for="(item, i) in event_data.covidInfo.demands"
                 :key="i"
-              >{{item}}</li>
+              ><p>{{item}}</p>
+              </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="event__importantInfo">
         <div class="event__importantInfo-title">Important information</div>
+        <div class="event__fulldesc-mobile-title">
+          <p>Important information</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__importantInfo-text">
           <ul>
             <li
               v-for="(item, i) in event_data.importantInfo"
               :key="i" 
-            >{{item}}</li>
+            ><p>{{item}}</p>
+            </li>
           </ul>
         </div>
       </div>
       <div class="event__meetingPoint">
         <div class="event__meetingPoint-title">Meeting point</div>
+        <div class="event__fulldesc-mobile-title">
+          <p>Meeting point</p>
+          <div class="event__fulldesc-mobile-title-control">
+            <img src="@/assets/images/svg/mobile-button-arrow.svg" alt="">
+          </div>
+        </div>
         <div class="event__meetingPoint-text" v-html="event_data.meetingPoint">
           {{event_data.meetingPoint}}
         </div>
@@ -411,7 +464,7 @@
           <div class="event__rate-reviews-review-content">
             <div class="event__rate-reviews-review-content-comment">
               <div class="event__rate-reviews-review-content-comment__photo">
-                <!-- <img src="@/assets/images/svg/user.svg" alt="user"> -->
+                <img src="@/assets/images/svg/user.svg" alt="user">
               </div>
               <div class="event__rate-reviews-review-content-comment__raiting">
                 <div class="event__rate-reviews-review-content-comment__raiting-star">
@@ -424,6 +477,9 @@
                 <div class="event__rate-reviews-review-content-comment__raiting-name">
                   @traveler
                 </div>
+                <div class="event__rate-reviews-review-content-comment__raiting-country">
+                  United Kingdom
+                </div>
                 <div class="event__rate-reviews-review-content-comment__raiting-date">
                   October 20, 2020
                 </div>
@@ -434,13 +490,17 @@
                 about Lanzarote. The Tour Guide are nice too very approachable 
                 and the drivers are good too for keeping a slow pace in a 
                 mountainous area to see the view clearly.
+                <div class="event__rate-reviews-review-content-comment__text-open">
+                  <img src="@/assets/images/svg/arrow.svg" alt="open">
+                </div>
                 <br>
+                <a class="translated">Translated</a>
                 <a>Show original</a>
               </div>
             </div>
             <div class="event__rate-reviews-review-content-comment">
               <div class="event__rate-reviews-review-content-comment__photo">
-                <!-- <img src="@/assets/images/svg/user.svg" alt="user"> -->
+                <img src="@/assets/images/svg/user.svg" alt="user">
               </div>
               <div class="event__rate-reviews-review-content-comment__raiting">
                 <div class="event__rate-reviews-review-content-comment__raiting-star">
@@ -453,6 +513,9 @@
                 <div class="event__rate-reviews-review-content-comment__raiting-name">
                   @traveler
                 </div>
+                <div class="event__rate-reviews-review-content-comment__raiting-country">
+                  United Kingdom
+                </div>
                 <div class="event__rate-reviews-review-content-comment__raiting-date">
                   October 20, 2020
                 </div>
@@ -464,12 +527,13 @@
                 and the drivers are good too for keeping a slow pace in a 
                 mountainous area to see the view clearly.
                 <br>
+                <a class="translated">Translated</a>
                 <a>Show original</a>
               </div>
             </div>
             <div class="event__rate-reviews-review-content-comment">
               <div class="event__rate-reviews-review-content-comment__photo">
-                <!-- <img src="@/assets/images/svg/user.svg" alt="user"> -->
+                <img src="@/assets/images/svg/user.svg" alt="user">
               </div>
               <div class="event__rate-reviews-review-content-comment__raiting">
                 <div class="event__rate-reviews-review-content-comment__raiting-star">
@@ -482,6 +546,9 @@
                 <div class="event__rate-reviews-review-content-comment__raiting-name">
                   @traveler
                 </div>
+                <div class="event__rate-reviews-review-content-comment__raiting-country">
+                  United Kingdom
+                </div>
                 <div class="event__rate-reviews-review-content-comment__raiting-date">
                   October 20, 2020
                 </div>
@@ -493,6 +560,7 @@
                 and the drivers are good too for keeping a slow pace in a 
                 mountainous area to see the view clearly.
                 <br>
+                <a class="translated">Translated</a>
                 <a>Show original</a>
               </div>
             </div>
@@ -500,6 +568,9 @@
               <btn class="btn_review">All reviews</btn>
             </div>
           </div>
+        </div>
+        <div class="event__rate-reviews-review-content-mobile-button">
+          <btn class="btn_review">All reviews</btn>
         </div>
       </div>
       <vi-card-carousel
@@ -509,6 +580,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import ViCardCarousel from "@/components/vi-card-carousel.vue";
 import CheckAvailability from "@/components/CheckAvailability.vue";
@@ -516,10 +588,15 @@ import Btn from "../components/controls/Btn.vue";
 import vSelect from '@/components/controls/vSelect'
 import axios from "axios";
 import { mapState, mapGetters } from "vuex";
+import slide from '@wyhaya/vue-slide'
 export default {
   name: "Event",
   components: {
-    ViCardCarousel, CheckAvailability, Btn, vSelect
+    ViCardCarousel, 
+    CheckAvailability, 
+    Btn, 
+    vSelect,
+    slide
   },
   data() {
     return {
@@ -546,6 +623,14 @@ export default {
       mainPicture: "",
       pictures: [],
       showShort: true,
+      slide: [
+        'https://i.ibb.co/HCSXZLD/photo-main.png', 
+        'https://i.ibb.co/HCSXZLD/photo-main.png', 
+        'https://i.ibb.co/HCSXZLD/photo-main.png', 
+        'https://i.ibb.co/HCSXZLD/photo-main.png',
+        'https://i.ibb.co/HCSXZLD/photo-main.png',
+        'https://i.ibb.co/HCSXZLD/photo-main.png',
+      ]
     };
   },
   computed: {
@@ -606,6 +691,9 @@ export default {
 .event {
   color: #1e2843;
   font-size: 20px;
+  &__photo-mobile{
+    display: none;
+  }
   &__title {
     font-weight: 700;
     font-size: 36px;
@@ -656,7 +744,7 @@ export default {
       overflow: hidden;
     }
     &-ratingVidodo {
-      margin-right: 40px;
+      margin-right: 12px;
       display: flex;
       align-items: center;
       padding: 3px 7px;
@@ -771,8 +859,22 @@ export default {
           }
         }
       }
+      &-date{
+        position: absolute;
+        width: 182px;
+        bottom: 16px;
+        left: 16px;
+        padding: 4px 15px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 4px rgba(30, 40, 67, 0.12);
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+      }
     }
     &-others {
+      position: relative;
       display: flex;
       flex-direction: column;
       height: 401px;
@@ -785,6 +887,23 @@ export default {
           height: 70.71px;
           border-radius: 8px;
         }
+      }
+      &__slide-up{
+        transform: rotateX(180deg);
+        cursor: pointer;
+        width: 100%;
+        position: absolute;
+        top: 7px;
+        display: flex;
+        justify-content: center;
+      }
+      &__slide-down{
+        cursor: pointer;
+        width: 100%;
+        position: absolute;
+        bottom: 7px;
+        display: flex;
+        justify-content: center;
       }
       &-onhover {
         width: 150px;
@@ -849,7 +968,7 @@ export default {
     }
   }
   &__highlights {
-    margin-top: 25px;
+    margin-top: 44px;
     margin-bottom: 35px;
     &-title {
       font-weight: 700;
@@ -862,13 +981,19 @@ export default {
         list-style-position: inside;
       }
       li {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 150%;
-        list-style-type: none;
+        display: flex;
+        align-items: center;
         margin-bottom: 6px;
+        p{
+          padding-left: 12px;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 150%;
+          list-style-type: none;
+        }
       }
       li:before {
+        padding-bottom: 5px;
         width: 10px;
         color: $light-blue-two;
         content: "•";
@@ -893,6 +1018,17 @@ export default {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
+    }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
     }
     &-text {
       margin-top: 16px;
@@ -922,17 +1058,34 @@ export default {
       font-size: 24px;
       line-height: 29px;
     }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+    }
     &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
       }
       li {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 26px;
-        list-style-type: none;
-        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        p{
+          padding-left: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 26px;
+          list-style-type: none;
+        }
       }
       li:before {
         width: 10px;
@@ -952,17 +1105,34 @@ export default {
       font-size: 24px;
       line-height: 29px;
     }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+    }
     &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
       }
       li {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 26px;
-        list-style-type: none;
-        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        p{
+          padding-left: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 26px;
+          list-style-type: none;
+        }
       }
       li:before {
         width: 10px;
@@ -982,17 +1152,34 @@ export default {
       font-size: 24px;
       line-height: 29px;
     }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+    }
     &-text {
       margin-top: 17px;
       ul {
         list-style-position: inside;
       }
       li {
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 26px;
-        list-style-type: none;
-        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        p{
+          padding-left: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 26px;
+          list-style-type: none;
+        }
       }
       li:before {
         width: 10px;
@@ -1012,6 +1199,17 @@ export default {
       font-size: 24px;
       line-height: 29px;
     }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+    }
     &-text {
       margin-top: 17px;
 
@@ -1023,11 +1221,17 @@ export default {
           list-style-position: inside;
         }
         li {
-          font-weight: 500;
-          font-size: 20px;
-          line-height: 26px;
-          list-style-type: none;
-          padding: 6px 0;
+          display: flex;
+          align-items: center;
+          p{
+            padding-left: 12px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            list-style-type: none;
+          }
         }
         li:before {
           width: 10px;
@@ -1047,11 +1251,17 @@ export default {
           list-style-position: inside;
         }
         li {
-          font-weight: 500;
-          font-size: 20px;
-          line-height: 26px;
-          list-style-type: none;
-          padding: 6px 0;
+          display: flex;
+          align-items: center;
+          p{
+            padding-left: 12px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 26px;
+            list-style-type: none;
+          }
         }
         li:before {
           width: 10px;
@@ -1071,6 +1281,17 @@ export default {
       font-weight: 700;
       font-size: 24px;
       line-height: 29px;
+    }
+    &-mobile-title{
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      &-control{
+        padding: 10px 7px;
+        background: #FFFFFF;
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
     }
     &-text {
       margin-top: 17px;
@@ -1292,6 +1513,9 @@ export default {
             height: 80px;
             background: #EAEDF3;
             border-radius: 100px;
+            img{
+              width: 20px;
+            }
           }
           &__raiting{
             width: 122px;
@@ -1310,19 +1534,45 @@ export default {
               font-size: 20px;
               line-height: 26px;
             }
+            &-country{
+              margin-top: 2px;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 16px;
+              color: #A0A8B9;
+            }
             &-date{
-              margin-top: 14px;
+              margin-top: 9px;
               width: 120px;
               font-weight: 500;
               font-size: 14px;
               line-height: 16px;
+              color: #A0A8B9;
             }
           }
           &__text{
+            position: relative;
             margin-left: 46px;
             font-weight: 500;
             font-size: 20px;
             line-height: 150%;
+            &-open{
+              position: absolute;
+              display: flex;
+              justify-content: center;
+              bottom: 35px;
+              right: 0;
+              width: 24px;
+              height: 24px;
+              padding: 10px 7px;
+              background: #FFFFFF;
+              box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+              img{
+                width: 10px;
+                height: 10px;
+              }
+            }
             a{
               cursor: pointer;
               font-weight: 500;
@@ -1330,12 +1580,549 @@ export default {
               line-height: 16px;
               color: $light-blue-two;
             }
+            .translated{
+              margin-right: 30px;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 16px;
+              color: #565E72;
+            }
           }
         }
         &-button{
           display: flex;
           justify-content: center;
           margin-top: 32px;
+        }
+        &-mobile-button{
+          margin-top: 23px;
+          display: none;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+  // Mobile version
+
+@media (max-width: 1024px){
+  .event__rate-reviews{
+    &-raiting{
+      &-vido{
+        &__stars{
+          .star-line{
+            width: 390px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px){
+  .event{
+    .row{
+      .main__header{
+        .main__breadcrumbs{
+          display: none;
+        }
+        .main__title{
+          width: 244px;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 130%;
+        }
+      }
+    }
+    .main__title{
+      margin-top: 12px;
+    }
+    &__photo-mobile{
+      display: block;
+    }
+    &__photo{
+      display: none;
+    }
+    &__heart{
+      margin-bottom: 30px;
+      width: 32px;
+      height: 32px;
+      margin-right: 0;
+      img{
+        width: 16px;
+        height: 14px;
+      }
+    }
+    &__price{
+      display: none;
+    }
+    &__info{
+      &-ratingVidodo{
+        margin-right: 11px;
+        &-reviews{
+          display: none;
+        }
+      }
+      &-ratingGeneral{
+        margin-right: 17px;
+      }
+      &-location{
+        &-name{
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 140%;
+        }
+        &-poi{
+          margin-top: 2px;
+          img{
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+    &__shortdesc{
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 140%;
+    }
+    &__about{
+      &-title{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+      }
+    }
+    &__highlights{
+      &-title{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+      }
+      &-text{
+        ul{
+          li{
+            p{
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 140%;
+            }
+          }
+        }
+      }
+    }
+    &__fulldesc{
+      border-bottom: 1px solid #D6DAE4;
+      padding-bottom: 20px;
+      h1{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+      }
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        p{
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 17px;
+        }
+      }
+      &-text{
+        margin-top: 8px;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 17px;
+      }
+      &-mobile-control{
+        display: block;
+      }
+      &-control{
+        display: none;
+      }
+    }
+    &__included{
+      margin-top: 19px;
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-control{
+          padding: 10px 7px;
+          background: #FFFFFF;
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+      }
+      &-text{
+        margin-top: 8px;
+        ul{
+          li{
+            p{
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 140%;
+            }
+          }
+        }
+      }
+    }
+    &__notincluded{
+      margin-top: 19px;
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-control{
+          padding: 10px 7px;
+          background: #FFFFFF;
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+      }
+      &-text{
+        margin-top: 8px;
+        ul{
+          li{
+            p{
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 140%;
+            }
+          }
+        }
+      }
+    }
+    &__covidInfo{
+      margin-top: 19px;
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-control{
+          padding: 10px 7px;
+          background: #FFFFFF;
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+      }
+      &-text{
+        margin-top: 0;
+        &-measures{
+          font-weight: bold;
+          font-size: 12px;
+          margin-top: 8px;
+          ul{
+            li{
+              p{
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 140%;
+              }
+            }
+          }
+        }
+        &-demands{
+          font-weight: bold;
+          font-size: 12px;
+          margin-top: 8px;
+          ul{
+            li{
+              p{
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 140%;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__importantInfo{
+      margin-top: 19px;
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-control{
+          padding: 10px 7px;
+          background: #FFFFFF;
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+      }
+      &-text{
+        margin-top: 8px;
+        ul{
+          li{
+            p{
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 140%;
+            }
+          }
+        }
+      }
+    }
+    &__meetingPoint{
+      margin-top: 19px;
+      &-title{
+        display: none;
+      }
+      &-mobile-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-control{
+          padding: 10px 7px;
+          background: #FFFFFF;
+          box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+      }
+      &-text{
+        margin-top: 8px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 140%;
+      }
+      .btn{
+        display: none;
+      }
+    }
+    &__rate-reviews{
+      margin-top: 36px;
+      &-title{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+      }
+      &-raiting{
+        margin-top: 12px;
+        &-vido{
+          &__stars{
+            ul{
+              li{
+                .star-line{
+                  margin-left: 4px;
+                  margin-right: 4px;
+                  width: 180px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .event{
+    &__rate-reviews{
+      margin-top: 36px;
+      &-title{
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 22px;
+      }
+      &-raiting{
+        justify-content: flex-start;
+        margin-top: 12px;
+        &-vido{
+          width: 90px;
+          height: 90px;
+          &__header{
+            padding: 6px 61px 8px 10px;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 12px;
+          }
+          &__content{
+            padding: 5px;
+            width: 89px;
+            height: 66px;
+            &-raiting{
+              font-weight: 500;
+              font-size: 22px;
+              line-height: 26px;
+              img{
+                margin-right: 6px;
+                width: 16px;
+                height: 20px;
+              }
+            }
+            &-star{
+              margin-top: 3px;
+              img{
+                width: 9px;
+                height: 9px;
+                &:not(:last-child){
+                  margin-right: 4px;
+                }
+              }
+            }
+            &-reviews{
+              margin-top: 3px;
+              font-weight: normal;
+              font-size: 10px;
+              line-height: 12px;
+            }
+          }
+          &__stars{
+            margin-left: 0;
+            ul{
+              li{
+                p{
+                  width: 10px;
+                  font-weight: 500;
+                  font-size: 11px;
+                  line-height: 13px;
+                }
+                img{
+                  margin-left: 0;
+                  width: 8px;
+                  height: 8px;
+                }
+                .star-line{
+                  margin-left: 4px;
+                  margin-right: 4px;
+                  width: 50px !important;
+                  height: 8px;
+                }
+                &:not(:last-child){
+                  margin-bottom: 6px;
+                }
+              }
+            }
+          }
+        }
+        &-average{
+          margin-left: 115px;
+          width: 90px;
+          height: 90px;
+          &__header{
+            padding: 6px 61px 8px 10px;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 12px;
+          }
+          &__content{
+            padding: 5px;
+            width: 89px;
+            height: 66px;
+            &-description{
+              display: none;
+            }
+            &-main{
+              width: 100%;
+              margin-left: 0;
+              &-raiting{
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 26px;
+                img{
+                  margin-right: 6px;
+                  width: 16px;
+                  height: 20px;
+                }
+              }
+              &-star{
+                margin-top: 3px;
+                img{
+                  width: 9px;
+                  height: 9px;
+                  &:not(:last-child){
+                    margin-right: 4px;
+                  }
+                }
+              }
+              &-reviews{
+                margin-top: 3px;
+                font-weight: normal;
+                font-size: 10px;
+                line-height: 12px;
+              }
+            }
+          }
+        }
+      }
+      &-review{
+        margin-top: 16px;
+        &__header{
+          display: none;
+        }
+        &-content{
+          display: flex;
+          overflow: hidden;
+          &-comment{
+            margin-top: 0;
+            padding: 16px;
+            margin-right: 10px;
+            display: block;
+            width: 288px;
+            position: relative;
+            background: #FFFFFF;
+            box-shadow: 0px 1px 4px rgba(30, 40, 67, 0.12);
+            border-radius: 8px;
+            &__photo{
+              display: none;
+            }
+            &__raiting{
+              margin-left: 0;
+              width: 288px;
+              &-name{
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 19px;
+              }
+              &-date{
+                position: absolute;
+                right: 0;
+                bottom: 16px;
+              }
+              &-star{
+                margin-bottom: 0;
+                position: absolute;
+                bottom: 16px;
+              }
+            }
+            &__text{
+              margin-top: 9px;
+              margin-left: 0;
+              margin-bottom: 35px;
+              font-weight: normal;
+              font-size: 16px;
+              line-height: 140%;
+              br{
+                display: none;
+              }
+              a{
+                margin-left: 10px;
+              }
+            }
+          }
+          &-button{
+            display: none;
+          }
+          &-mobile-button{
+            display: block;
+          }
         }
       }
     }

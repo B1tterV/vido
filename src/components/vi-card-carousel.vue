@@ -4,6 +4,9 @@
       <!-- <div class="container"> -->
         <div class="carousel__controls">
           <div class="carousel__controls-title">{{ carousel_title }}</div>
+          <div class="carousel__subtitle">
+            {{ carousel_subtitle }}
+          </div>
           <div class="carousel__controls-buttons">
             <button class="carousel__controls-buttons-prev" @click="prevSlide">
               <svg
@@ -69,6 +72,10 @@ export default {
       type: String,
       default: () => "",
     },
+    carousel_subtitle: {
+      type: String,
+      default: () => "",
+    }
   },
   data() {
     return {
@@ -100,15 +107,17 @@ export default {
 .carousel {
   margin-top: 70px;
   &__controls {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
     &-title {
       font-size: 36px;
       font-weight: 600;
     }
     &-buttons {
+      position: absolute;
+      right: 0;
+      bottom: -6px;
       padding: 5px;
       &-next,
       &-prev {
@@ -125,6 +134,14 @@ export default {
       }
     }
   }
+  &__subtitle {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    opacity: 0.5;
+  }
 }
 .wrapper {
   height: 400px;
@@ -136,4 +153,36 @@ export default {
   justify-content: space-between;
   transition: all ease .5s;
 }
+
+@media (max-width: 1200px){
+
+}
+
+@media (max-width: 992px){
+  .carousel{
+    &__controls{
+      margin-bottom: 21px;
+      place-content: center;
+      &-buttons{
+        display: none !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px){
+  
+}
+
+@media (max-width: 576px){
+  .carousel{
+    &__controls{
+      &-title{
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
 </style>

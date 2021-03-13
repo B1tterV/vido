@@ -1,5 +1,9 @@
 <template>
   <div id="MainPage">
+
+    <!-- COOKIE -->
+    <Cookie/>
+
     <!-- INTRO -->
     <div class="intro">
       <div class="intro__inner">
@@ -7,8 +11,11 @@
           Find tours, activities and tickets for sightseeing in Lanzarote
         </h2>
         <div class="intro__action">
-          <input class="intro__action-item" type="date" />
-          <btn class="btn_secondary intro__action-item">SEARCH</btn>
+          <input class="intro__action-item" type="date"/>
+          <btn class="btn_secondary intro__action-item">Search</btn>
+          <btn class="btn_secondary intro__action-item intro__action-item-mobile">
+            <img src="@/assets/images/svg/mobile-search.svg" alt="search">
+          </btn>
         </div>
       </div>
     </div>
@@ -20,7 +27,7 @@
           <div class="feature__item">
             <div class="feature__item_icon">
               <img
-                src="../../public/imgs/features/noqueues_icon.png"
+                src="../../public/imgs/features/noqueues_icon.svg"
                 alt=""
               />
             </div>
@@ -33,7 +40,7 @@
           </div>
           <div class="feature__item">
             <div class="feature__item_icon">
-              <img src="../../public/imgs/features/message-square.png" alt="" />
+              <img src="../../public/imgs/features/message-square.svg" alt="" />
             </div>
             <div class="feature__item_title">Best price guaranty</div>
             <div class="feature__item_text">
@@ -44,7 +51,7 @@
           </div>
           <div class="feature__item">
             <div class="feature__item_icon">
-              <img src="../../public/imgs/features/users.png" alt="" />
+              <img src="../../public/imgs/features/users.svg" alt="" />
             </div>
             <div class="feature__item_title">Receive a gift</div>
             <div class="feature__item_text">
@@ -74,7 +81,7 @@
           <div class="adv__content">
             <div class="adv__icon">
               <img
-                src="@/../public/imgs/MainPage/Advertisement/app_icon.png"
+                src="@/../public/imgs/MainPage/Advertisement/app_icon.svg"
                 alt=""
               />
             </div>
@@ -86,7 +93,7 @@
                   popular tours and tickets to places of interest around
                   Lanzarote.
                 </div>
-                <div>
+                <div class="adv__main-description-sub">
                   Book in advance with Vidodo Guide. Get instant confirmation.
                   Access to offline booking information.
                 </div>
@@ -94,13 +101,13 @@
               <div class="adv__main-stores">
                 <div class="adv__main-stores-app">
                   <img
-                    src="@/../public/imgs/MainPage/Advertisement/app_store.png"
+                    src="@/../public/imgs/MainPage/Advertisement/app_store.svg"
                     alt=""
                   />
                 </div>
                 <div class="adv__main-stores-google">
                   <img
-                    src="@/../public/imgs/MainPage/Advertisement/google_play.png"
+                    src="@/../public/imgs/MainPage/Advertisement/google_play.svg"
                     alt=""
                   />
                 </div>
@@ -162,15 +169,17 @@
     </div>
   </div>
 </template>
+
 <script>
 import Btn from "../components/controls/Btn.vue";
 import ViCardVertical from '../components/vi-card-vertical.vue';
 import ViCardCarousel from '../components/vi-card-carousel.vue'
+import Cookie from '../components/Cookie.vue'
 import axios from 'axios'
 export default {
   name: "MainPage",
   components: { 
-    Btn, ViCardVertical, ViCardCarousel
+    Btn, ViCardVertical, ViCardCarousel, Cookie
   },
   created(){
     axios.get('/api/cards')
@@ -186,6 +195,7 @@ export default {
   }
 };
 </script>
+
 <style lang="scss" scoped>
 /* Tags */
 .tags{
@@ -196,7 +206,6 @@ export default {
     font-weight: 600;
   }
   &__inner{
-    width: 900px;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -221,7 +230,7 @@ export default {
 /* Advertisement */
 .adv {
   min-height: 454px;
-  margin-top: 88px;
+  margin-top: 75px;
   background: no-repeat url(../../public/imgs/MainPage/Advertisement/bg.png);
   background-size: cover;
   background-position: center;
@@ -422,7 +431,7 @@ export default {
 } */
 /* INTRO */
 .intro {
-  min-height: calc(100vh - 106px);
+  min-height: calc(100vh - 108px);
   /* max-height: 750px; */
   background: url("../../public/imgs/mainpage_bg_wave.png") no-repeat;
   background-size: cover;
@@ -459,10 +468,13 @@ export default {
   border: none;
   border-radius: 5px; 
   padding: 11px 26px;
-  font-size: 14px;
   font-weight: 500;
+  font-size: 16px;
   transition: .2s ease;
-  color: $white;
+  &-mobile{
+    display: none;
+    padding: 9px;
+  }
 }
 .intro__action-item:hover{
   opacity: 0.8;
@@ -487,6 +499,9 @@ export default {
 }
 .feature__item {
   max-width: 300px;
+  &:last-child{
+    height: 170px;
+  }
 }
 .feature__item_icon {
   max-width: 300px;
@@ -499,7 +514,115 @@ export default {
   margin-bottom: 7px;
 }
 .feature__item_text {
-  text-align: justify;
   line-height: 1.5;
 }
+
+
+// Mobile version
+
+@media (max-width: 1200px){
+
+}
+
+@media (max-width: 992px){
+  .intro{
+    &__inner{
+      height: auto;
+      width: 700px;
+    }
+    &__action{
+      &-item{
+        &.btn_secondary{
+          display: none;
+        }
+        &-mobile{
+          display: block !important;
+        }
+      }
+    }
+  }
+  .feature{
+    text-align: -webkit-center;
+    &__inner{
+      display: block;
+    }
+    &__item{
+      &:not(:last-child){
+        margin-bottom: 40px;
+      }
+      &_text{
+        text-align: center;
+      }
+    }
+  }
+  .adv{
+    &__content{
+      display: block;
+    }
+    &__icon{
+      text-align: -webkit-center;
+      margin-bottom: 23px;
+    }
+    &__main{
+      padding: 0;
+      text-align: center;
+      &-description{
+        max-width: 500px;
+        &-sub{
+          margin-top: 8px;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 130%;
+        }
+      }
+      &-stores{
+        margin-top: 24px;
+        justify-content: center;
+      }
+    }
+    &__qr{
+      display: none;
+    }
+    &__picture{
+      display: none;
+    }
+  }
+  .tags{
+    margin-top: 64px;
+    &__title{
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .intro{
+    min-height: 50vh;
+    &__inner{
+      width: 90%;
+    }
+    &__title{
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 130%;
+    }
+  }
+}
+
+@media (max-width: 576px){
+  .intro{
+    &__inner{
+      width: 90%;
+    }
+    &__title{
+      padding: 10px;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 130%;
+    }
+  }
+}
+
 </style>

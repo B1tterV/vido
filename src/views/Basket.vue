@@ -9,13 +9,12 @@
         Cart
       </h1>
     </div>
-    <div class="main__content">
-
+    <div class="main__content" v-if="card">
+      <div class="main__info-tip basket-info-tip">
+        We have reserved your tickets for 37:42 minutes
+      </div>
       <div class="row justify-between">
         <div class="basket">
-          <div class="main__info-tip">
-            We have reserved your tickets for 37:42 minutes
-          </div>
           <div class="basket-cards">
             <div class="basket__card"
               v-for="el in card"
@@ -57,8 +56,13 @@
               >
                 Continue search
               </router-link>
+              <div class="ordering__not-logged" v-if="!loggedIn">
+                <a>Log in</a> to your account 
+                <br> 
+                or <a>register</a> for fast ordering
+              </div>
               <span>
-                <img src="@/assets/images/svg/ok.svg" alt="">
+                <img src="@/assets/images/svg/green-ok.svg" alt="">
                 Best Price Guaranteed
               </span>
             </div>
@@ -110,18 +114,86 @@
       </div>
     </div>
 
+    <div class="main__content" v-else>
+      <div class="no-orders">
+        <p class="no-orders__text">
+            Your cart is empty. When you add an event to your cart,
+            <br>
+            we reserve it for you for 60 minutes.
+        </p>
+        <div class="no-orders__search">
+            <div class="search-item">
+                <input-fileds
+                    search
+                    placeholder="Find something specific"
+                />
+                <btn search class="desktop-search">Search</btn>
+                <btn search class="mobile-search">
+                    <img src="@/assets/images/svg/mobile-search.svg" alt="">
+                </btn>
+            </div>
+        </div>
+      </div>
+    </div>
+
     <vi-card-carousel
       :carousel_title="carouselTitle"
       :carousel_data="cards"
     />
+
+    <vi-card-carousel v-if="!card"
+      :carousel_title="carouselTitle2"
+      :carousel_data="cards"
+    />
+
+    <div class="mobile-basket" v-if="card">
+      <div class="mobile-basket__ordering">
+        <div class="ordering">
+          <span>
+            <img src="@/assets/images/svg/ok.svg" alt="">
+            Best Price Guaranteed
+          </span>
+          <p class="ordering__text">
+            No additional fees and commissions
+          </p>
+          <router-link 
+            to="/payment-data" 
+            tag="button" 
+            class="btn_enter-search"
+          >
+            Continue search
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-basket__checkout" v-if="card">
+        <div class="checkout-mobile">
+          <div class="checkout-mobile__price">
+            <div class="checkout-mobile__price-total"><span>Total:</span> 2 items:</div>
+            <div class="checkout-mobile__price-price">245,00 € </div>
+          </div>
+          <div class="checkout-mobile__btn">
+            <router-link 
+              to="/payment-data" 
+              tag="button" 
+              class="btn_ordering"
+            >
+              Checkout
+            </router-link>
+          </div>
+        </div>
+      </div>
   </div>
 
 </template>
 
 
 <script>
+import Btn from "../components/controls/Btn.vue";
 import BasketCard from '@/components/BasketCard'
 import ViCardCarousel from '../components/vi-card-carousel.vue'
+import InputFileds from '@/components/controls/InputFileds';
 import vSelect from '@/components/controls/vSelect'
 import axios from 'axios'
 
@@ -131,6 +203,7 @@ export default {
     showQuestion2: false,
     showQuestion3: false,
     showQuestion4: false,
+    loggedIn: false,
     card: [
       {
         id: 0,
@@ -171,6 +244,7 @@ export default {
     ],
     cards:[],
     carouselTitle: 'Popular Adventures',
+    carouselTitle2: 'You may also like'
   }),
   created(){
     axios.get('/api/cards')
@@ -179,9 +253,11 @@ export default {
     })
   },
   components: {
+    Btn,
     BasketCard,
     ViCardCarousel,
-    vSelect
+    vSelect,
+    InputFileds,
   }
 }
 </script>
@@ -212,7 +288,6 @@ export default {
   color: $green;
   font-weight: bold;
   font-size: 18px;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .basket {
@@ -283,6 +358,9 @@ export default {
   
 
   &-sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 263px;
   
     &__ordering {
@@ -303,6 +381,17 @@ export default {
           font-weight: 600;
           font-size: 28px;
           color: $text-primary;
+        }
+
+        &__not-logged{
+          margin-top: 17px;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 22px;
+          a{
+            cursor: pointer;
+            color: $light-blue-two;
+          }
         }
 
         p {
@@ -328,4 +417,146 @@ export default {
     }
   }
 }
+
+.main{
+  position: relative;
+  &__content{
+    position: relative;
+    .no-orders{
+      &__text{
+        margin-bottom: 41px;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 34px;
+      }
+    }
+  }
+  .mobile-basket{
+    margin-top: 29px;
+    &__ordering{
+      margin-bottom: 33px;
+      .ordering{
+        span{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 22px;
+          color: $green;
+          img{
+            margin-right: 9px;
+          }
+        }
+        &__text{
+          margin-top: 12px;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 14px;
+          text-align: center;
+          color: #B7BCCA;
+        }
+        .btn_enter-search{
+          width: 100%;
+        }
+      }
+    }
+    &__checkout{
+      position: sticky;
+      bottom: 0;
+      background: white;
+      padding-top: 12px;
+      border-top: 1px solid #DBE0E9;
+      .checkout-mobile{
+        &__price{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &-total{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 21px;
+            color: #B7BCCA;
+            span{
+              font-weight: bold;
+              font-size: 18px;
+              line-height: 22px;
+              color: #1E2843;
+            }
+          }
+          &-price{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 21px;
+          }
+        }
+        &__btn{
+          .btn_ordering{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.basket-info-tip{
+  width: 74%;
+}
+
+.mobile-basket{
+  display: none;
+  &__checkout{
+    display: none;
+  }
+}
+
+.mobile-search{
+  display: none;
+}
+
+@media (max-width: 1200px){
+  .basket{
+    width: 72%;
+  }
+  .basket-info-tip{
+    width: 72%;
+  }
+}
+
+@media (max-width: 1024px){
+    .basket{
+      width: 70%;
+    }
+    .basket-info-tip{
+      width: 70%;
+    }
+}
+
+@media (max-width: 992px){
+  .main__content{
+    .no-orders{
+      &__text{
+        width: 100%;
+        text-align: center;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 140%;
+      }
+    }
+  }
+  .mobile-basket{
+    display: block;
+    &__checkout{
+      display: block;
+    }
+  }
+  .basket{
+    width: 100%;
+  }
+  .basket-info-tip{
+    width: 100%;
+  }
+}
+
 </style>

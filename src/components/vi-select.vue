@@ -87,7 +87,8 @@ export default {
   text-overflow: ellipsis; 
 }
 .options {
-  border: solid 1px #aeaeae;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   position: absolute;
   top: 40px;
   right: 0;

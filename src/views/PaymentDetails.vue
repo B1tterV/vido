@@ -108,18 +108,25 @@
                         </div>
                         <div class="row row-half">
                             <div class="payment__details-pay-now">
-                            <div>
-                                <router-link to="/successful-checkout">
-                                    <btn class="btn_primary btn_pay-now">
-                                        Pay now
-                                    </btn>
-                                </router-link>
+                                <div>
+                                    <router-link to="/successful-checkout">
+                                        <btn class="btn_primary btn_pay-now">
+                                            Pay now
+                                        </btn>
+                                    </router-link>
+                                </div>
+                                <PaymentStatus/>
                             </div>
-                        </div>
                         </div>
                     </div>
                     <div class="ordering__information">
                         <p class="title-min">Order information</p>
+                        <div class="total__items-mobile">
+                            <p>Order information</p>
+                            <div class="total__items-mobile__hide-content">
+                                <img src="@/assets/images/svg/arrow.svg" alt="">
+                            </div>
+                        </div>
                         <div class="basket-cards">
                             <div class="basket__card"
                                 v-for="el in card"
@@ -154,6 +161,26 @@
                     <p>You will reveive your gift on the next step</p>
                 </div>
             </div>
+            <div class="mobile-footer">
+                <p class="mobile-footer__copyright">© 2020, Vidodo Guide LLP</p>
+            </div>
+            <div class="mobile-footer__checkout">
+                <div class="checkout-mobile">
+                    <div class="checkout-mobile__price">
+                        <div class="checkout-mobile__price-total"><span>Total:</span> 2 items:</div>
+                        <div class="checkout-mobile__price-price">245,00 € </div>
+                    </div>
+                    <div class="checkout-mobile__btn">
+                        <router-link 
+                        to="/successful-checkout" 
+                        tag="button" 
+                        class="btn_ordering"
+                        >
+                        Checkout
+                        </router-link>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -170,6 +197,7 @@ import Radio from '../components/controls/Radio.vue'
 import OrderCard from '@/components/OrderCard'
 import AcceptPayments from '@/components/AcceptPayments'
 import BasketCard from '@/components/BasketCard'
+import PaymentStatus from '@/components/PaymentStatus'
 import axios from 'axios'
 
 export default {
@@ -197,31 +225,45 @@ export default {
         card: [
         {
             id: 0,
+            imgUrl: 'https://i.ibb.co/BVrgttt/total-card.png',
             type: 'Outdoor Classes',
-            title: 'La Graciosa Day trip to Fuerteventura and Corralejo',
+            subtitle: 'Feries ticket',
+            title: 'Ferries round ticket to Fuertaventura',
             datetime: 'August 21, 2020 11:00 - 17:00, English',
             people: '1 Adult, 2 Senior, 1 Youth, 2 Child, 1 Infant',
             price: {
+            old: '225,00 €',
             saving: 'savings 15.44 €',
             base: '65.00 €'
             }
         },  
         {
             id: 1,
+            imgUrl: 'https://i.ibb.co/bQtg11Z/total-card2.png',
             type: 'Outdoor Classes',
-            title: 'La Graciosa Day trip to Fuerteventura and Corralejo',
+            title: 'Ferries round ticket to Fuertaventura',
+            subtitle: 'Feries ticket',
             datetime: 'August 21, 2020 11:00 - 17:00, English',
             people: '1 Adult, 2 Senior, 1 Youth, 2 Child, 1 Infant',
             price: {
-            saving: 'savings 10.12 €',
-            base: '40.00 €'
+            base: '90.00 €'
             }
         }
         ],
-    }),
+        }),
     props: {
         state: Boolean
     },
+    // methods:{
+    //     getWidth: function(){
+    //         if(screen.width <= 992){
+    //             document.querySelector('footer').style.cssText = 'display: none'
+    //         }
+    //     }
+    // },
+    // beforeMount(){
+    // 	this.getWidth()
+    // },
     validations: {
         form: {
             cardName: {
@@ -254,7 +296,8 @@ export default {
         Radio,
         OrderCard,
         AcceptPayments,
-        BasketCard
+        BasketCard,
+        PaymentStatus
     },
 }
 </script>
@@ -386,6 +429,16 @@ export default {
             .title-min{
                 margin-bottom: 22px;
             }
+            .basket-card{
+                &__price{
+                    button{
+                        display: none;
+                    }
+                    .price{
+                        margin-top: 85px;
+                    }
+                }
+            }
         }
     }
     .card__data{
@@ -456,6 +509,227 @@ export default {
             a{
                 font-size: 12px;
             }
+        }
+    }
+
+    .total__items-mobile{
+        display: none;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        p{
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 22px;
+        }
+        &__hide-content{
+            padding: 6px;
+            background: #FFFFFF;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transform: matrix(1, 0, 0, -1, 0, 0);
+        }
+    }
+
+    .mobile-footer{
+        display: none;
+        margin-bottom: 46px;
+        margin-top: 19px;
+        width: 100%;
+        &__copyright{
+            text-align: center;
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 120%;
+            opacity: 0.5;
+            letter-spacing: -0.005em;
+        }
+        &__checkout{
+            width: 100%;
+            display: none;
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding-top: 12px;
+            border-top: 1px solid #DBE0E9;
+        .checkout-mobile{
+            &__price{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                &-total{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: #B7BCCA;
+                    span{
+                    font-weight: bold;
+                    font-size: 18px;
+                    line-height: 22px;
+                    color: #1E2843;
+                    }
+                }
+                &-price{
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 21px;
+                }
+                }
+                &__btn{
+                .btn_ordering {
+                        margin-bottom: 16px;
+                        border-radius: 12px;
+                        border: none;
+                        outline: none;
+                        background: $light-green-gradient;
+                        margin-top: 15px;
+                        padding: 15px;
+                        width: 100%;
+                        color: $white;
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1200px){
+        .page__main-content{
+            width: 700px;
+        }
+        .payment__details{
+            .basket-cards{
+                .basket__card{
+                    .basket-card{
+                        &__price{
+                            button{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1024px){
+        .page__main-content{
+            width: 670px;
+        }
+    }
+
+    @media (max-width: 992px){
+        .page-title{
+            font-weight: bold;
+            font-size: 22px;
+            line-height: 130%;
+        }
+        .page__main-content{
+            width: 100% !important;
+            .payment__details{
+                &-pay{
+                    display: none;
+                }
+                &-credentials{
+                    border-bottom: none;
+                    margin-bottom: 0;
+                    display: block;
+                    &-form{
+                        width: 100%;
+                        .card__data{
+                            &-footer{
+                                justify-content: space-between;
+                                .cardMonth{
+                                    width: 100%;
+                                }
+                                .cardYear{
+                                    width: 100%;
+                                }
+                                .cvc-code{
+                                    width: 100%;
+                                }
+                                .not-active-select{
+                                    font-size: 14px;
+                                    padding-left: 12px;
+                                    top: 12px;
+                                }
+                                .select__input__controls-preview-btn{
+                                    right: 4px;
+                                }
+                            }
+                        }
+                    }
+                    &-steps{
+                        margin-left: 0;
+                        width: 100%;
+                        .title{
+                            display: none;
+                        }
+                        .step-item{
+                            display: none;
+                        }
+                        .ssl-halper{
+                            margin-top: 32px;
+                            align-items: center;
+                            place-content: center;
+                            img{
+                                width: 14px;
+                                height: 14px;
+                            }
+                            p{
+                                padding-left: 8px;
+                                width: 280px;
+                                font-weight: 600;
+                                font-size: 12px;
+                                line-height: 14px;
+                            }
+                        }
+                    }
+                }
+                .row-half{
+                    width: 100%;
+                }
+            }
+            .title-min{
+                display: none;
+            }
+        }
+        .page__second-content{
+            width: 100% !important;
+            .accept__payments{
+                display: none;
+            }
+            .data__security{
+                display: none;
+            }
+            .payment__details-gift{
+                margin-top: 0;
+                padding: 12px 16px;
+                align-items: center;
+                place-content: center;
+                p{
+                    font-weight: 600;
+                    font-size: 12px;
+                    line-height: 14px;
+                    width: 250px;
+                }
+            }
+        }
+        .total__items-mobile{
+            display: flex;
+        }
+        .mobile-footer{
+            display: block;
+            &__checkout{
+                display: block;
+            }
+        }
+    }
+
+    @media (max-width: 576px){
+        .container {
+            width: 93%!important;
+            max-width: none!important;
         }
     }
 </style>

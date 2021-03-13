@@ -58,56 +58,6 @@
     }
 }
 
-.select__payment-pay{
-    .pay-input{
-        display: flex;
-        align-items: center;
-        input{
-            margin-right: 12px;
-        }
-        &:not(:last-child){
-            margin-bottom: 20px;
-        }
-    }
-}
-
-.pay-card{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 66px;
-    height: 42px;
-    border: 1px solid #DCDEE7;
-    box-sizing: border-box;
-    border-radius: 4px;
-    &:not(:last-child){
-        margin-right: 12px;
-    }
-}
-
-.submit-pay{
-    margin-top: 35px;
-    padding: 14px 24px;
-    background: linear-gradient(180deg, #15D79D -46%, #00875F 119%);
-    border-radius: 12px;
-    border: none;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 21px;
-    color: white;
-}
-
-.general-terms{
-    margin-top: 24px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    color: #8F93A1;
-    a{
-        color: $light-blue;
-    }
-}
-
 .page__data-second-content{
     width: 100%;
     .page-data-container{

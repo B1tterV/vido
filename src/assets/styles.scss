@@ -25,7 +25,7 @@
   font-size: 1rem;
 }
 .container {
-  width: 88%;
+  width: 95%;
   max-width: 1150px;
   margin: 0 auto;                                           
 }
@@ -78,7 +78,7 @@ body{
 
 .page {
   &-section {
-    width: 100%;
+    width: 95%;
     max-width: 1150px;
     margin: auto;
 
@@ -89,10 +89,10 @@ body{
     }
   }
 
-  &-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
   &-justify-between {
     justify-content: space-between;
