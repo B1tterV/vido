@@ -340,6 +340,7 @@ export default {
             margin-top: 54px;
         }
         &-slidebar{
+            position: fixed;
             width: 165px;
             margin-top: 24px;
             margin-left: 34px;
