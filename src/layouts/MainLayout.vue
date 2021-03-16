@@ -1,89 +1,91 @@
 <template>
   <div>
     <header class="header">
-      <router-link to="/" tag="div" class="header__logo">
-        <img aria-hidden="true" src="@/assets/images/svg/logo.svg" alt="vidodo"/>
-      </router-link>
-
-      <div class="header__control">
-        <div class="header__control-item">
-          <img src="@/assets/images/svg/lanzarote_icon.svg" />
-          <p>Lanzarote</p>
-        </div>
-        <div class="header__control-item">
-          <img src="@/assets/images/svg/header_language_eng.svg" alt="">
-          EN
-        </div>
-        <div class="header__control-item">
-          <span>€</span> EUR
-        </div>
-      </div>
-
-      <div class="header__links">
-        
-        <router-link 
-          to="/catalog" 
-          tag="div" 
-          class="header__links-item"
-        >
-          <icon 
-            name="icon icon_catalog" 
-          />
-          Catalog
+      <div class="header-content">
+        <router-link to="/" tag="div" class="header__logo">
+          <img aria-hidden="true" src="@/assets/images/svg/logo.svg" alt="vidodo"/>
         </router-link>
 
-        <div class="header__links-item">
-          <icon 
-            name="icon icon_help" 
-          />
-          Help
-        </div>
-
-        <router-link 
-          to="/favorites"
-          tag="div"
-          class="header__links-item"
-        >
-          <icon 
-            name="icon icon_favorites" 
-          />
-          Wishlist
-        </router-link>
-
-        <router-link 
-          tag="div"
-          to="/basket"
-          class="header__links-item"
-        >
-          <icon 
-            name="icon icon_basket" 
-          />
-          Cart
-        </router-link>
-        
-      </div>
-
-
-      <div v-if="!login" class="header__action" @click="controlStateAuth">
-        <btn class="btn_primary btn_singin">
-          Sign in
-        </btn>
-      </div>
-
-      <div 
-        v-else 
-        class="header__action header__action-item" 
-        style="width: 125px !important; margin: 0; display: flex; align-items: center;"
-        @click="openAccountMenu"
-        v-click-outside="onClickOutside"
-      >
-          <icon 
-            name="icon icon_account" 
-          />
-          My Account
-          <div class="header__action-item-menu" v-if="isOpen">
-            <AccountMenu/>
+        <div class="header__control">
+          <div class="header__control-item">
+            <img src="@/assets/images/svg/lanzarote_icon.svg" />
+            <p>Lanzarote</p>
           </div>
+          <div class="header__control-item">
+            <img src="@/assets/images/svg/header_language_eng.svg" alt="">
+            EN
+          </div>
+          <div class="header__control-item">
+            <span>€</span> EUR
+          </div>
+        </div>
+
+        <div class="header__links">
+          
+          <router-link 
+            to="/catalog" 
+            tag="div" 
+            class="header__links-item"
+          >
+            <icon 
+              name="icon icon_catalog" 
+            />
+            Catalog
+          </router-link>
+
+          <div class="header__links-item">
+            <icon 
+              name="icon icon_help" 
+            />
+            Help
+          </div>
+
+          <router-link 
+            to="/favorites"
+            tag="div"
+            class="header__links-item"
+          >
+            <icon 
+              name="icon icon_favorites" 
+            />
+            Wishlist
+          </router-link>
+
+          <router-link 
+            tag="div"
+            to="/basket"
+            class="header__links-item"
+          >
+            <icon 
+              name="icon icon_basket" 
+            />
+            Cart
+          </router-link>
+          
+        </div>
+
+
+        <div v-if="!login" class="header__action" @click="controlStateAuth">
+          <btn class="btn_primary btn_singin">
+            Sign in
+          </btn>
+        </div>
+
+        <div 
+          v-else 
+          class="header__action header__action-item" 
+          style="width: 125px !important; margin: 0; display: flex; align-items: center;"
+          @click="openAccountMenu"
+          v-click-outside="onClickOutside"
+        >
+            <icon 
+              name="icon icon_account" 
+            />
+            My Account
+            <div class="header__action-item-menu" v-if="isOpen">
+              <AccountMenu/>
+            </div>
+        </div>
       </div>
 
     </header>
@@ -361,21 +363,7 @@
       </div>
       </div>
       <div class="footer__bottom-wave">
-        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <path 
-        d="M 0 89.92140108238615 
-        C 89.16666666666666 62.12841278711613 
-        89.16666666666666 62.12841278711613
-        178.33333333333331 76.02490693475114 
-        C 267.5 89.92140108238615 267.5 
-        89.92140108238615 356.66666666666663 
-        60.426999924490275 C 445.83333333333326 
-        30.932598766594396 445.83333333333326 
-        30.932598766594396 535 66.14321008569122 
-        L 535 300 L 0 300 Z" 
-        fill="#fff" 
-        height="160" amplitude="30" speed="0.35" points="3"></path>
-        </svg>
+        <img src="@/assets/images/svg/wave-min.svg" alt="">
       </div>
     </footer>
   </div>
@@ -383,7 +371,6 @@
 
 <script>
 import '@/assets/header.scss'
-
 import Auth from '@/components/Auth'
 import viSelect from '@/components/vi-select'
 import Btn from '@/components/controls/Btn'
@@ -393,7 +380,6 @@ import { mapState } from 'vuex'
 import vClickOutside from 'v-click-outside'
 import Profile from '@/views/Profile'
 import InputFileds from '@/components/controls/InputFileds'
-
 export default {
   name: "main-layout",
   data: () => ({
@@ -485,7 +471,6 @@ export default {
         &:nth-child(2){animation-delay:-2s; animation-duration:5s}
         &:nth-child(3){animation-delay:-4s; animation-duration:3s}
       }
-
       @keyframes move-forever{
         0%{transform: translate(-90px , 0%)}
         100%{transform: translate(85px , 0%)} 
@@ -635,15 +620,12 @@ export default {
     &__bottom-wave{
       position: absolute;
       width: 535px;
-      height: 300px;
-      right: -100px;
-      bottom: -125px;
-      transform: rotate(-20deg);
+      bottom: 0;
+      right: 0;
       ::selection{background-color: salmon; color: white;}
       .parallax > use{
         animation:move-forever 5s linear infinite;
       }
-
       @keyframes move-forever{
         0%{transform: translate(-90px , 0%)}
         100%{transform: translate(85px , 0%)} 
@@ -657,7 +639,6 @@ export default {
       }
     }
   }
-
   @media (max-width: 1200px){
     .footer{
       &__guide{
@@ -665,7 +646,6 @@ export default {
       }
     }
   }
-
   @media (max-width: 1024px){
     .footer{
       &__info{
@@ -686,7 +666,6 @@ export default {
       }
     }
   }
-
   @media (max-width: 992px){
     .footer{
       position: relative;
@@ -739,7 +718,6 @@ export default {
       }
     }
   }
-
   @media (max-width: 768px){
     .footer{
       &__info{
@@ -753,7 +731,6 @@ export default {
       }
     }
   }
-
   @media (max-width: 576px){
     
   }

@@ -118,6 +118,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "favorites" */ '@/views/Contacts')
   },
   {
+    path: '/help',
+    name: 'help',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import(/* webpackChunkName: "favorites" */ '@/views/Help')
+  },
+  {
     path: '*',
     name: 'page404',
     meta:{

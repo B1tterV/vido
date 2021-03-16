@@ -106,6 +106,7 @@ export default {
 <style lang="scss">
 .page {
   &__title {
+    font-weight: bold;
     font-size: 36px;
     color: $text-primary;
     margin-bottom: 24px;
