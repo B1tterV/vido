@@ -504,7 +504,7 @@ export default {
         bottom: 0;
         width: 100%;
         height: 100px;
-        padding: 25px !important;
+        padding: 25px 175px !important;
         background: white;
         .row{
             justify-content: center;
